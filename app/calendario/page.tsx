@@ -3,14 +3,22 @@ import { MES_EMOJI, MES_VIBE } from '@/lib/types';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Calendario de Festivales 2027 | Festivales de Argentina',
-  description: 'Todos los festivales y fiestas populares de Argentina ordenados mes a mes. Planificá tu agenda cultural 2027.',
+  title: 'Calendario 2027 | Festivales de Argentina',
+  description: 'Todos los festivales ordenados mes a mes. Planificá tu agenda cultural 2027.',
 };
 
 const CAT_COLOR: Record<string, string> = {
-  folklore: '#5A6B3A', gastro: '#D4923A', musica: '#1C2B3A',
-  carnaval: '#C4593A', doma: '#B07D4F', artesania: '#8B5E35',
-  tango: '#2C1E0F', cine: '#1C2B3A',
+  folklore:  'rgba(116,172,223,0.15)', gastro:   'rgba(232,184,48,0.15)',
+  musica:    'rgba(160,100,220,0.15)', carnaval: 'rgba(255,80,120,0.15)',
+  doma:      'rgba(232,184,48,0.12)', artesania: 'rgba(80,180,130,0.15)',
+  tango:     'rgba(255,60,60,0.15)',  cine:      'rgba(116,172,223,0.12)',
+};
+
+const CAT_TEXT: Record<string, string> = {
+  folklore:  '#74ACDF', gastro:   '#E8B830',
+  musica:    '#b87fff', carnaval: '#ff7096',
+  doma:      '#c9a840', artesania: '#5fcc9a',
+  tango:     '#ff6b6b', cine:     '#a0c8ef',
 };
 
 const CAT_LABEL: Record<string, string> = {
@@ -25,40 +33,43 @@ export default async function CalendarioPage() {
   const meses = Object.keys(porMes);
 
   return (
-    <main style={{ maxWidth: 900, margin: '0 auto', padding: '3rem 2rem' }}>
+    <main style={{ maxWidth: 860, margin: '0 auto', padding: '3rem 5vw 5rem' }}>
 
       {/* Encabezado */}
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
         <div style={{
           display: 'inline-block',
-          background: 'var(--terracota)',
-          color: '#fff',
-          fontSize: '.75rem',
+          border: '1px solid var(--celeste)',
+          color: 'var(--celeste)',
+          fontSize: '.72rem',
           fontWeight: 700,
-          letterSpacing: '.12em',
+          letterSpacing: '.15em',
           textTransform: 'uppercase',
-          padding: '.35rem 1rem',
+          padding: '.3rem 1rem',
           borderRadius: 20,
           marginBottom: '1rem',
+          opacity: .9,
         }}>
           📅 Vista Anual
         </div>
+
         <h1 style={{
-          fontFamily: 'var(--font-fraunces,Fraunces,serif)',
-          fontSize: 'clamp(2rem,5vw,3.5rem)',
-          fontWeight: 900,
-          color: 'var(--texto)',
-          lineHeight: 1.1,
+          fontFamily: 'var(--font-bebas,Bebas Neue,sans-serif)',
+          fontSize: 'clamp(3rem,7vw,5.5rem)',
+          letterSpacing: '.04em',
+          color: 'var(--blanco)',
+          lineHeight: 1,
           marginBottom: '.75rem',
         }}>
-          Calendario <em style={{ fontStyle: 'italic', color: 'var(--terracota)' }}>2027</em>
+          Calendario <span style={{ color: 'var(--dorado)' }}>2027</span>
         </h1>
-        <p style={{ color: 'var(--texto2)', fontSize: '1.05rem', maxWidth: 520, margin: '0 auto' }}>
-          {festivales.length} festivales distribuidos a lo largo del año. Planificá tu agenda cultural.
+
+        <p style={{ color: 'var(--gris)', fontSize: '1rem', maxWidth: 480, margin: '0 auto' }}>
+          {festivales.length} festivales distribuidos mes a mes. Planificá tu agenda.
         </p>
       </div>
 
-      {/* Índice rápido de meses */}
+      {/* Índice rápido */}
       <div style={{
         display: 'flex',
         flexWrap: 'wrap',
@@ -66,34 +77,32 @@ export default async function CalendarioPage() {
         justifyContent: 'center',
         marginBottom: '3rem',
         padding: '1.25rem',
-        background: 'var(--crema2)',
-        borderRadius: 16,
-        border: '1px solid var(--arena)',
+        background: 'var(--bg2)',
+        borderRadius: 12,
+        border: '1px solid var(--borde)',
       }}>
         {meses.map(mes => (
-          <a
-            key={mes}
-            href={`#cal-${mes}`}
-            style={{
-              padding: '.35rem .85rem',
-              borderRadius: 20,
-              fontSize: '.82rem',
-              fontWeight: 600,
-              textDecoration: 'none',
-              background: 'var(--blanco)',
-              color: 'var(--texto2)',
-              border: '1px solid var(--arena)',
-              transition: 'all .2s',
-            }}
-          >
+          <a key={mes} href={`#cal-${mes}`} style={{
+            padding: '.35rem .85rem',
+            borderRadius: 6,
+            fontSize: '.8rem',
+            fontWeight: 600,
+            textDecoration: 'none',
+            background: 'var(--bg3)',
+            color: 'var(--gris)',
+            border: '1px solid var(--borde)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '.4rem',
+            transition: 'all .2s',
+          }}>
             {MES_EMOJI[mes]} {mes}
             <span style={{
-              marginLeft: '.4rem',
-              background: 'var(--terracota)',
-              color: '#fff',
-              fontSize: '.65rem',
-              padding: '.1rem .45rem',
-              borderRadius: 8,
+              background: 'var(--celeste)',
+              color: 'var(--bg)',
+              fontSize: '.62rem',
+              padding: '.1rem .4rem',
+              borderRadius: 4,
               fontWeight: 700,
             }}>
               {porMes[mes].length}
@@ -105,86 +114,83 @@ export default async function CalendarioPage() {
       {/* Timeline por mes */}
       {meses.map(mes => (
         <section key={mes} id={`cal-${mes}`} style={{ marginBottom: '3.5rem' }}>
-
-          {/* Encabezado del mes */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
             gap: '1rem',
             marginBottom: '1.5rem',
-            paddingBottom: '.75rem',
-            borderBottom: '2px solid var(--arena)',
+            paddingBottom: '.85rem',
+            borderBottom: '1px solid var(--borde)',
           }}>
-            <div style={{
-              fontFamily: 'var(--font-fraunces,Fraunces,serif)',
+            <h2 style={{
+              fontFamily: 'var(--font-bebas,Bebas Neue,sans-serif)',
               fontSize: '2rem',
-              fontWeight: 900,
-              color: 'var(--texto)',
+              letterSpacing: '.04em',
+              color: 'var(--blanco)',
             }}>
               {MES_EMOJI[mes]} {mes}
-            </div>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: '.88rem', color: 'var(--texto2)', fontStyle: 'italic' }}>
-                {MES_VIBE[mes]}
-              </div>
-            </div>
-            <div style={{
-              fontSize: '.78rem',
+            </h2>
+            <span style={{ fontSize: '.85rem', color: 'var(--gris)', fontStyle: 'italic', flex: 1 }}>
+              {MES_VIBE[mes]}
+            </span>
+            <span style={{
+              fontSize: '.7rem',
               fontWeight: 700,
-              color: 'var(--terracota)',
-              background: 'rgba(196,89,58,0.1)',
-              padding: '.2rem .65rem',
-              borderRadius: 12,
+              color: 'var(--dorado)',
+              background: 'rgba(232,184,48,0.08)',
+              border: '1px solid var(--borde2)',
+              padding: '.18rem .6rem',
+              borderRadius: 5,
             }}>
-              {porMes[mes].length} {porMes[mes].length === 1 ? 'festival' : 'festivales'}
-            </div>
+              {porMes[mes].length} festivales
+            </span>
           </div>
 
-          {/* Eventos del mes */}
           <div className="calendar-month">
             {porMes[mes].map(f => {
-              const inicio = formatFecha(f.fecha_inicio);
+              const ini = formatFecha(f.fecha_inicio);
               const fin = formatFecha(f.fecha_fin);
-              const mismoMes = inicio.mes === fin.mes;
+              const mismo = ini.mes === fin.mes && ini.dia !== fin.dia;
 
               return (
                 <div key={f.id} className="calendar-event">
                   {/* Fecha */}
                   <div className="calendar-date">
-                    <span>{inicio.dia}</span>
-                    {!mismoMes || inicio.dia !== fin.dia ? (
-                      <span style={{ fontSize: '.7rem', fontWeight: 500, color: 'var(--tierra)' }}>
+                    <span>{ini.dia}</span>
+                    {mismo && (
+                      <span style={{ fontSize: '.62rem', color: 'var(--gris)', display: 'block' }}>
                         al {fin.dia}
                       </span>
-                    ) : null}
-                    <span style={{ fontSize: '.65rem', fontWeight: 600, color: 'var(--tierra2)', marginTop: '.1rem' }}>
-                      {inicio.mes}
+                    )}
+                    <span style={{ fontSize: '.62rem', color: 'var(--gris)', letterSpacing: '.04em' }}>
+                      {ini.mes}
                     </span>
                   </div>
 
                   {/* Info */}
                   <div className="calendar-info">
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', marginBottom: '.2rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', flexWrap: 'wrap', marginBottom: '.2rem' }}>
                       <h3 className="calendar-title">{f.titulo}</h3>
                       <span style={{
-                        fontSize: '.65rem',
+                        fontSize: '.62rem',
                         fontWeight: 700,
                         padding: '.15rem .5rem',
-                        borderRadius: 8,
-                        background: CAT_COLOR[f.categoria] || 'var(--tierra)',
-                        color: '#fff',
-                        whiteSpace: 'nowrap',
+                        borderRadius: 4,
+                        background: CAT_COLOR[f.categoria] || 'var(--bg3)',
+                        color: CAT_TEXT[f.categoria] || 'var(--celeste)',
+                        border: `1px solid ${CAT_TEXT[f.categoria] || 'var(--celeste)'}33`,
                       }}>
                         {CAT_LABEL[f.categoria] || f.categoria}
                       </span>
                       {f.gratuito && (
                         <span style={{
-                          fontSize: '.65rem',
+                          fontSize: '.62rem',
                           fontWeight: 700,
                           padding: '.15rem .5rem',
-                          borderRadius: 8,
-                          background: 'rgba(90,107,58,0.15)',
-                          color: 'var(--verde-oliva)',
+                          borderRadius: 4,
+                          background: 'rgba(232,184,48,0.1)',
+                          color: 'var(--dorado)',
+                          border: '1px solid var(--borde2)',
                         }}>
                           🆓 Gratis
                         </span>
@@ -193,27 +199,6 @@ export default async function CalendarioPage() {
                     <p className="calendar-loc">📍 {f.ubicacion}</p>
                     <p className="calendar-desc">{f.descripcion}</p>
                   </div>
-
-                  {/* Imagen miniatura */}
-                  {f.imagen && (
-                    <div style={{
-                      width: 70,
-                      height: 70,
-                      borderRadius: 10,
-                      overflow: 'hidden',
-                      flexShrink: 0,
-                      display: 'none',
-                    }}
-                    className="calendar-thumb">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={f.imagen}
-                        alt={f.titulo}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        loading="lazy"
-                      />
-                    </div>
-                  )}
                 </div>
               );
             })}
@@ -222,24 +207,20 @@ export default async function CalendarioPage() {
       ))}
 
       {/* CTA volver */}
-      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-        <a
-          href="/"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '.5rem',
-            background: 'var(--terracota)',
-            color: '#fff',
-            fontWeight: 700,
-            fontSize: '.95rem',
-            padding: '.75rem 2rem',
-            borderRadius: 25,
-            textDecoration: 'none',
-            transition: 'all .25s',
-            boxShadow: '0 4px 15px rgba(196,89,58,0.35)',
-          }}
-        >
+      <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+        <a href="/" style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '.5rem',
+          background: 'var(--celeste)',
+          color: 'var(--bg)',
+          fontWeight: 700,
+          fontSize: '.95rem',
+          padding: '.75rem 2rem',
+          borderRadius: 8,
+          textDecoration: 'none',
+          transition: 'all .2s',
+        }}>
           🗺️ Ver festivales con fotos
         </a>
       </div>

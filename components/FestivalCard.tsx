@@ -2,24 +2,27 @@ import Image from 'next/image';
 import { Festival } from '@/lib/types';
 
 const CAT_LABEL: Record<string, string> = {
-  folklore: '🎵 Folklore', gastro: '🍽️ Gastronomía', musica: '🎸 Música',
-  carnaval: '🎭 Carnaval', doma: '🐎 Doma', artesania: '🌍 Cultura',
-  tango: '💃 Tango', cine: '🎬 Cine',
+  folklore:  '🎵 Folklore',
+  gastro:    '🍽️ Gastronomía',
+  musica:    '🎸 Música',
+  carnaval:  '🎭 Carnaval',
+  doma:      '🐎 Doma',
+  artesania: '🌍 Cultura',
+  tango:     '💃 Tango',
+  cine:      '🎬 Cine',
 };
+
+const MESES_CORTO = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
 
 function formatRango(inicio: string, fin: string): string {
   if (!inicio) return '';
-  const meses = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
   const d1 = new Date(inicio + 'T12:00:00');
   const d2 = fin ? new Date(fin + 'T12:00:00') : d1;
-  const m1 = meses[d1.getMonth()];
-  const m2 = meses[d2.getMonth()];
+  const m1 = MESES_CORTO[d1.getMonth()];
+  const m2 = MESES_CORTO[d2.getMonth()];
+  if (m1 === m2 && d1.getDate() === d2.getDate()) return `${d1.getDate()} ${m1}`;
   if (m1 === m2) return `${d1.getDate()}–${d2.getDate()} ${m1}`;
   return `${d1.getDate()} ${m1} – ${d2.getDate()} ${m2}`;
-}
-
-function mapsUrl(ubicacion: string): string {
-  return `https://maps.google.com/?q=${encodeURIComponent(ubicacion + ' Argentina')}`;
 }
 
 export default function FestivalCard({ festival: f }: { festival: Festival }) {
@@ -38,12 +41,12 @@ export default function FestivalCard({ festival: f }: { festival: Festival }) {
             unoptimized
           />
         ) : (
-          <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, var(--crema2), var(--arena))' }} />
+          <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #070f1e, #0d1a30)' }} />
         )}
         <span className={`card-cat-pill cat-${f.categoria}`}>
           {CAT_LABEL[f.categoria] || f.categoria}
         </span>
-        {(f.fecha_inicio || f.fecha_fin) && (
+        {f.fecha_inicio && (
           <span className="card-date-pill">
             {formatRango(f.fecha_inicio, f.fecha_fin)}
           </span>
@@ -54,13 +57,15 @@ export default function FestivalCard({ festival: f }: { festival: Festival }) {
         <h3 className="card-title">{f.titulo}</h3>
         <p className="card-loc">📍 {f.ubicacion}</p>
         <p className="card-desc">{f.descripcion}</p>
+
         <div className="card-tags">
           {f.gratuito && <span className="tag hot">🆓 Gratuito</span>}
           <span className="tag">{f.mes}</span>
         </div>
+
         <a
           className="card-maps-btn"
-          href={mapsUrl(f.ubicacion)}
+          href={`https://maps.google.com/?q=${encodeURIComponent(f.ubicacion + ' Argentina')}`}
           target="_blank"
           rel="noopener noreferrer"
         >

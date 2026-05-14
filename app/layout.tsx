@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { DM_Sans, Fraunces } from 'next/font/google';
+import { DM_Sans, Fraunces, Bebas_Neue } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 
@@ -16,10 +16,15 @@ const fraunces = Fraunces({
   axes: ['opsz'],
 });
 
+const bebasNeue = Bebas_Neue({
+  variable: '--font-bebas',
+  subsets: ['latin'],
+  weight: '400',
+});
+
 export const metadata: Metadata = {
   title: 'Festivales de Argentina 2027 | Directorio Oficial',
-  description: 'El directorio más completo de festivales, fiestas populares y eventos culturales de todo el país. Folklore, gastronomía, música, carnaval y mucho más.',
-  keywords: 'festivales argentina, fiestas populares, folklore, carnaval, gastronomía, música, eventos culturales',
+  description: 'El directorio más completo de festivales, fiestas populares y eventos culturales de todo el país.',
   openGraph: {
     title: 'Festivales de Argentina 2027',
     description: 'El directorio más completo de festivales y eventos culturales argentinos.',
@@ -32,30 +37,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${dmSans.variable} ${fraunces.variable}`}>
+    <html lang="es" className={`${dmSans.variable} ${fraunces.variable} ${bebasNeue.variable}`}>
       <body>
         <Header />
         {children}
-        <footer style={{
-          background: 'var(--azul-noche)',
-          color: 'rgba(245,238,216,0.65)',
-          padding: '3rem 2rem',
-          textAlign: 'center',
-        }}>
-          <strong style={{
-            display: 'block',
-            fontFamily: 'var(--font-fraunces,Fraunces,serif)',
-            fontSize: '1.4rem',
-            color: 'var(--ocre)',
-            fontStyle: 'italic',
-            marginBottom: '.5rem',
-          }}>
-            Festivales de Argentina
-          </strong>
+        <footer className="footer">
+          <div className="footer-title">Festivales de Argentina</div>
           <p style={{ fontSize: '.9rem', marginBottom: '.5rem' }}>
             El directorio más completo de festivales y eventos culturales del país.
           </p>
-          <small style={{ fontSize: '.78rem', color: 'rgba(245,238,216,0.4)' }}>
+          <small style={{ fontSize: '.75rem', color: 'rgba(116,172,223,0.35)' }}>
             © {new Date().getFullYear()} festivalesdeargentina.com.ar
           </small>
         </footer>
