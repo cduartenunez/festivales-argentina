@@ -4,10 +4,13 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 export default function IntroMusical() {
-  const [visible,    setVisible]    = useState(false);
-  const [fadingOut,  setFadingOut]  = useState(false);
-  const audioRef  = useRef<HTMLAudioElement>(null);
-  const timerRef  = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [visible,   setVisible]   = useState(false);
+  const [fadingOut, setFadingOut] = useState(false);
+
+  const introRef   = useRef<HTMLAudioElement>(null);
+  const crowdRef   = useRef<HTMLAudioElement>(null);
+  const autoTimer  = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const crowdTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (!sessionStorage.getItem('intro-seen')) setVisible(true);
@@ -17,24 +20,42 @@ export default function IntroMusical() {
     if (!visible) return;
 
     const playTimer = setTimeout(() => {
-      audioRef.current?.play().catch(() => {});
+      if (introRef.current) {
+        introRef.current.volume = 0.5;
+        introRef.current.play().catch(() => {});
+      }
+      if (crowdRef.current) {
+        crowdRef.current.volume = 0.8;
+        crowdRef.current.play().catch(() => {});
+      }
+      // Detener aplausos a los 4 segundos
+      crowdTimer.current = setTimeout(() => {
+        try { crowdRef.current?.pause(); } catch (_) {}
+      }, 4000);
     }, 200);
 
-    timerRef.current = setTimeout(() => handleDismiss(), 4000);
+    // Auto-dismiss a los 4 segundos
+    autoTimer.current = setTimeout(() => handleDismiss(), 4000);
 
     return () => {
       clearTimeout(playTimer);
-      if (timerRef.current) clearTimeout(timerRef.current);
+      if (autoTimer.current)  clearTimeout(autoTimer.current);
+      if (crowdTimer.current) clearTimeout(crowdTimer.current);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
 
   const handleDismiss = () => {
-    if (timerRef.current) clearTimeout(timerRef.current);
+    if (autoTimer.current)  clearTimeout(autoTimer.current);
+    if (crowdTimer.current) clearTimeout(crowdTimer.current);
     setFadingOut(true);
-    try { audioRef.current?.pause(); } catch (_) {}
+    try { crowdRef.current?.pause(); } catch (_) {}
     sessionStorage.setItem('intro-seen', '1');
-    setTimeout(() => setVisible(false), 600);
+    // Fade-out 600ms, después detener intro.mp3
+    setTimeout(() => {
+      try { introRef.current?.pause(); } catch (_) {}
+      setVisible(false);
+    }, 600);
   };
 
   if (!visible) return null;
@@ -51,7 +72,8 @@ export default function IntroMusical() {
         pointerEvents: fadingOut ? 'none' : 'auto',
       }}
     >
-      <audio ref={audioRef} src="/intro.mp3" preload="auto" />
+      <audio ref={introRef} src="/intro.mp3" preload="auto" />
+      <audio ref={crowdRef} src="/crowd.mp3" preload="auto" />
 
       {/* Logo animado */}
       <div style={{ animation: 'introScale 0.8s ease forwards', marginBottom: '1.5rem' }}>

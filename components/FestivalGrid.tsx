@@ -104,7 +104,7 @@ export default function FestivalGrid({ festivales, mesActual }: Props) {
       <div className="sponsors-bar">
         <span className="sponsors-label">Sponsors</span>
         <a
-          href="https://instagram.com/6segundos"
+          href="https://www.instagram.com/6segundos.cafe/"
           target="_blank"
           rel="noopener noreferrer"
           className="sponsor-item"
@@ -118,7 +118,7 @@ export default function FestivalGrid({ festivales, mesActual }: Props) {
           />
           <div>
             <div className="sponsor-name">6 Segundos</div>
-            <div className="sponsor-handle">@6segundos</div>
+            <div className="sponsor-handle">@6segundos.cafe</div>
           </div>
         </a>
       </div>
