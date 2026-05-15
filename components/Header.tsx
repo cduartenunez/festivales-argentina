@@ -37,6 +37,10 @@ export default function Header() {
           <span className="nav-icon">📅</span>
           <span className="nav-label">{lang === 'es' ? 'Calendario' : 'Calendar'}</span>
         </Link>
+        <Link href="/sponsors" className={`nav-link nav-link-ad${path === '/sponsors' ? ' active' : ''}`}>
+          <span className="nav-icon">💼</span>
+          <span className="nav-label">Anunciá aquí</span>
+        </Link>
 
         <button
           onClick={toggle}

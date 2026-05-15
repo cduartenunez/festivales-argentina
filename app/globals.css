@@ -238,6 +238,16 @@ body {
   background: rgba(232,184,48,0.06);
 }
 
+.nav-link-ad {
+  color: var(--dorado) !important;
+  border-color: rgba(232,184,48,0.2) !important;
+}
+
+.nav-link-ad:hover {
+  background: rgba(232,184,48,0.08) !important;
+  border-color: rgba(232,184,48,0.4) !important;
+}
+
 /* ── MES NAV ──────────────────────────────────────── */
 .month-nav {
   background: var(--bg2);
