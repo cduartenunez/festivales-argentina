@@ -59,16 +59,23 @@ export default function IntroMusical() {
     <div
       style={{
         position: 'fixed', inset: 0, zIndex: 10000,
-        background: '#030810',
+        backgroundImage: 'url(/hero-bg.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
-        // Overlay invisible pero en DOM durante fase audio-only
         opacity: phase === 'audio-only' ? 0 : 1,
         pointerEvents: phase === 'audio-only' ? 'none' : 'auto',
         transition: `opacity ${FADE_VISUAL_MS}ms ease`,
       }}
     >
       <audio ref={introRef} src="/intro.mp3" preload="auto" />
+
+      {/* Overlay oscuro para legibilidad */}
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(3,8,16,0.65)', zIndex: 0 }} />
+
+      {/* Contenido centrado sobre el overlay */}
+      <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 
       <div style={{ animation: 'introScale 0.8s ease forwards', marginBottom: '1.5rem' }}>
         <Image
@@ -115,6 +122,7 @@ export default function IntroMusical() {
       >
         Entrar →
       </button>
+      </div>{/* /contenido */}
     </div>
   );
 }
