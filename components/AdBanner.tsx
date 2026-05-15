@@ -1,8 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
-const SPONSOR_URL = 'https://festivalesdeargentina.com.ar';
+const SPONSOR_URL  = 'https://instagram.com/6segundos';
+const SPONSOR_NAME = '6 Segundos';
+const SPONSOR_LOGO = '/6seg_logo_rosa.png';
 
 export default function AdBanner() {
   const [visible,   setVisible]   = useState(false);
@@ -63,20 +66,31 @@ export default function AdBanner() {
 
         {/* Área sponsor */}
         <div style={{
-          border: '2px dashed rgba(116,172,223,0.18)',
+          border: '1px solid rgba(116,172,223,0.15)',
           borderRadius: '12px',
-          padding: '3rem 2rem',
+          padding: '2rem',
           marginBottom: '2rem',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '.75rem',
         }}>
+          <Image
+            src={SPONSOR_LOGO}
+            alt={SPONSOR_NAME}
+            width={60}
+            height={60}
+            style={{ objectFit: 'contain' }}
+          />
           <p style={{
             fontFamily: 'var(--font-bebas)',
             fontSize: '1.6rem', letterSpacing: '.06em',
-            color: 'var(--celeste)', marginBottom: '.5rem',
+            color: 'var(--blanco)',
           }}>
-            Tu marca aquí
+            {SPONSOR_NAME}
           </p>
-          <p style={{ fontSize: '.8rem', color: 'rgba(116,172,223,0.35)' }}>
-            festivalesdeargentina.com.ar
+          <p style={{ fontSize: '.78rem', color: 'rgba(116,172,223,0.45)' }}>
+            @6segundos
           </p>
         </div>
 
