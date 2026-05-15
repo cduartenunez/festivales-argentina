@@ -1,7 +1,14 @@
+'use client';
+
+import { useLang } from '@/context/LangContext';
+import { t } from '@/lib/i18n';
+
 export default function Hero({ total }: { total: number }) {
+  const { lang } = useLang();
+  const tx = t(lang);
+
   return (
     <div className="hero">
-      {/* imagen de fondo con animación Ken Burns */}
       <div className="hero-bg-wrap">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -12,27 +19,23 @@ export default function Hero({ total }: { total: number }) {
         />
       </div>
 
-      {/* overlay oscuro para legibilidad */}
       <div className="hero-gradient" />
 
-      {/* texto bottom-left */}
       <div className="hero-content">
-        <div className="hero-badge">🇦🇷 Directorio Oficial 2027</div>
+        <div className="hero-badge">{tx.hero.badge}</div>
 
         <h1 className="hero-title">
-          Festivales de
-          <em>Argentina</em>
+          {tx.hero.title1}
+          <em>{tx.hero.title2}</em>
         </h1>
 
-        <p className="hero-subtitle">
-          El directorio más completo de festivales, fiestas populares y eventos culturales de todo el país.
-        </p>
+        <p className="hero-subtitle">{tx.hero.subtitle}</p>
 
         <div className="hero-stats">
           {[
-            { num: total, label: 'Festivales' },
-            { num: 22,    label: 'Provincias'  },
-            { num: 12,    label: 'Meses'       },
+            { num: total, label: tx.hero.statLabels[0] },
+            { num: 22,    label: tx.hero.statLabels[1] },
+            { num: 12,    label: tx.hero.statLabels[2] },
           ].map(s => (
             <div key={s.label}>
               <div className="hero-stat-num">{s.num}</div>

@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 import { DM_Sans, Fraunces, Bebas_Neue } from 'next/font/google';
 import './globals.css';
+import { LangProvider } from '@/context/LangContext';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import AdBanner from '@/components/AdBanner';
 
 const dmSans = DM_Sans({
   variable: '--font-dm-sans',
@@ -39,17 +42,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className={`${dmSans.variable} ${fraunces.variable} ${bebasNeue.variable}`}>
       <body>
-        <Header />
-        {children}
-        <footer className="footer">
-          <div className="footer-title">Festivales de Argentina</div>
-          <p style={{ fontSize: '.9rem', marginBottom: '.5rem' }}>
-            El directorio más completo de festivales y eventos culturales del país.
-          </p>
-          <small style={{ fontSize: '.75rem', color: 'rgba(116,172,223,0.35)' }}>
-            © {new Date().getFullYear()} festivalesdeargentina.com.ar
-          </small>
-        </footer>
+        <LangProvider>
+          <Header />
+          {children}
+          <Footer />
+          <AdBanner />
+        </LangProvider>
       </body>
     </html>
   );

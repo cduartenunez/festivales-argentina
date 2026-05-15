@@ -2,18 +2,9 @@
 
 import { useState, useMemo } from 'react';
 import { Festival, MESES, MES_EMOJI, MES_VIBE } from '@/lib/types';
+import { useLang } from '@/context/LangContext';
+import { t } from '@/lib/i18n';
 import FestivalCard from './FestivalCard';
-
-const CATEGORIAS = [
-  { key: 'folklore',  label: '🎵 Folklore'    },
-  { key: 'gastro',    label: '🍽️ Gastronomía' },
-  { key: 'musica',    label: '🎸 Música'       },
-  { key: 'carnaval',  label: '🎭 Carnaval'     },
-  { key: 'artesania', label: '🌍 Cultura'      },
-  { key: 'doma',      label: '🐎 Doma'         },
-  { key: 'tango',     label: '💃 Tango'        },
-  { key: 'cine',      label: '🎬 Cine'         },
-];
 
 type TipoMes = 'actual' | 'siguiente' | 'anterior' | 'seleccionado';
 
@@ -23,16 +14,17 @@ interface Props {
 }
 
 export default function FestivalGrid({ festivales, mesActual }: Props) {
-  const [query,      setQuery]      = useState('');
-  const [cat,        setCat]        = useState('');
-  const [mesFiltro,  setMesFiltro]  = useState<string | null>(null);
+  const [query,     setQuery]     = useState('');
+  const [cat,       setCat]       = useState('');
+  const [mesFiltro, setMesFiltro] = useState<string | null>(null);
 
-  // Calcular trimestre desde el mes actual
-  const currentIdx  = MESES.indexOf(mesActual);
+  const { lang } = useLang();
+  const tx = t(lang);
+
+  const currentIdx   = MESES.indexOf(mesActual);
   const mesSiguiente = MESES[(currentIdx + 1) % 12];
   const mesAnterior  = MESES[(currentIdx + 11) % 12];
 
-  // Secciones a renderizar: trimestre o mes seleccionado
   const secciones: { mes: string; tipo: TipoMes }[] = mesFiltro
     ? [{ mes: mesFiltro, tipo: 'seleccionado' }]
     : [
@@ -41,7 +33,6 @@ export default function FestivalGrid({ festivales, mesActual }: Props) {
         { mes: mesSiguiente, tipo: 'siguiente' },
       ];
 
-  // Filtrar festivales aplicando búsqueda y categoría
   const festsPorMes = useMemo(() => {
     return (mes: string) =>
       festivales.filter(f => {
@@ -57,13 +48,12 @@ export default function FestivalGrid({ festivales, mesActual }: Props) {
     <>
       {/* ── SELECTOR DE MESES ──────────────────────── */}
       <nav className="month-nav">
-        {/* Botón trimestre */}
         <button
           onClick={() => setMesFiltro(null)}
           className={`month-btn${mesFiltro === null ? ' mes-active' : ''}`}
-          title="Volver al trimestre actual"
+          title={lang === 'es' ? 'Volver al trimestre actual' : 'Back to current quarter'}
         >
-          🗓 Trimestre
+          {tx.nav.quarter}
         </button>
 
         <span style={{ width: 1, background: 'rgba(116,172,223,0.15)', margin: '0 .25rem', alignSelf: 'stretch' }} />
@@ -80,7 +70,7 @@ export default function FestivalGrid({ festivales, mesActual }: Props) {
                 : ''
             }`}
           >
-            {MES_EMOJI[mes]} {mes}
+            {MES_EMOJI[mes]} {tx.mesLabel(mes)}
           </button>
         ))}
       </nav>
@@ -89,11 +79,11 @@ export default function FestivalGrid({ festivales, mesActual }: Props) {
       <div className="filter-bar">
         <input
           type="text"
-          placeholder="🔍 Buscar festival, ciudad, provincia..."
+          placeholder={tx.search.placeholder}
           value={query}
           onChange={e => setQuery(e.target.value)}
         />
-        {CATEGORIAS.map(({ key, label }) => (
+        {tx.categories.map(({ key, label }) => (
           <button
             key={key}
             onClick={() => setCat(cat === key ? '' : key)}
@@ -104,7 +94,7 @@ export default function FestivalGrid({ festivales, mesActual }: Props) {
         ))}
         {(query || cat) && (
           <button className="cat-btn" onClick={() => { setQuery(''); setCat(''); }}>
-            ✕ Limpiar
+            {tx.search.clear}
           </button>
         )}
       </div>
@@ -115,8 +105,8 @@ export default function FestivalGrid({ festivales, mesActual }: Props) {
           const fests = festsPorMes(mes);
           if (fests.length === 0 && (query || cat)) return null;
 
-          const esActual    = tipo === 'actual';
-          const esAnterior  = tipo === 'anterior';
+          const esActual   = tipo === 'actual';
+          const esAnterior = tipo === 'anterior';
 
           return (
             <section
@@ -126,23 +116,20 @@ export default function FestivalGrid({ festivales, mesActual }: Props) {
             >
               <div className="month-header">
                 <h2 style={esActual ? { fontSize: '2.8rem' } : undefined}>
-                  {MES_EMOJI[mes]} {mes}
+                  {MES_EMOJI[mes]} {tx.mesLabel(mes)}
                 </h2>
 
-                {/* Badge solo en mes actual */}
                 {esActual && (
-                  <span className="badge-mes-actual">🗓 Este mes</span>
+                  <span className="badge-mes-actual">{tx.nav.thisMonth}</span>
                 )}
 
                 <span className="month-vibe">{MES_VIBE[mes]}</span>
-                <span className="month-count">
-                  {fests.length} {fests.length === 1 ? 'festival' : 'festivales'}
-                </span>
+                <span className="month-count">{tx.search.count(fests.length)}</span>
               </div>
 
               {fests.length === 0 ? (
                 <p style={{ color: 'var(--gris)', fontSize: '.9rem', padding: '1rem 0' }}>
-                  Sin resultados para este filtro.
+                  {tx.search.noFilter}
                 </p>
               ) : (
                 <div className="cards-grid">
@@ -153,11 +140,10 @@ export default function FestivalGrid({ festivales, mesActual }: Props) {
           );
         })}
 
-        {/* Vacío global */}
         {secciones.every(({ mes }) => festsPorMes(mes).length === 0) && (query || cat) && (
           <div style={{ textAlign: 'center', padding: '5rem 2rem', color: 'var(--gris)' }}>
             <p style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🔍</p>
-            <p>No encontramos festivales con esa búsqueda.</p>
+            <p>{tx.search.noSearch}</p>
           </div>
         )}
       </main>
