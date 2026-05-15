@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Image from 'next/image';
 import { Festival, MESES, MES_EMOJI, MES_VIBE } from '@/lib/types';
 import { useLang } from '@/context/LangContext';
 import { t } from '@/lib/i18n';
@@ -97,6 +98,29 @@ export default function FestivalGrid({ festivales, mesActual }: Props) {
             {tx.search.clear}
           </button>
         )}
+      </div>
+
+      {/* ── SPONSORS ──────────────────────────────── */}
+      <div className="sponsors-bar">
+        <span className="sponsors-label">Sponsors</span>
+        <a
+          href="https://instagram.com/6segundos"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="sponsor-item"
+        >
+          <Image
+            src="/6seg_logo_rosa.png"
+            alt="6 Segundos"
+            width={60}
+            height={60}
+            style={{ borderRadius: '50%', objectFit: 'contain', flexShrink: 0 }}
+          />
+          <div>
+            <div className="sponsor-name">6 Segundos</div>
+            <div className="sponsor-handle">@6segundos</div>
+          </div>
+        </a>
       </div>
 
       {/* ── GRILLA ────────────────────────────────── */}

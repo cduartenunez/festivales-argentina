@@ -4,7 +4,7 @@ import './globals.css';
 import { LangProvider } from '@/context/LangContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import AdBanner from '@/components/AdBanner';
+import IntroMusical from '@/components/IntroMusical';
 
 const dmSans = DM_Sans({
   variable: '--font-dm-sans',
@@ -43,10 +43,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es" className={`${dmSans.variable} ${fraunces.variable} ${bebasNeue.variable}`}>
       <body>
         <LangProvider>
+          <IntroMusical />
           <Header />
           {children}
           <Footer />
-          <AdBanner />
         </LangProvider>
       </body>
     </html>

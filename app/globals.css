@@ -617,6 +617,67 @@ body {
   margin-bottom: .5rem;
 }
 
+/* ── SPONSORS BAR ─────────────────────────────────── */
+.sponsors-bar {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--borde);
+  padding: .75rem 5vw;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sponsors-label {
+  font-size: .62rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba(116,172,223,0.35);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.sponsor-item {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  text-decoration: none;
+  padding: .35rem .75rem;
+  border: 1px solid rgba(116,172,223,0.15);
+  border-radius: 10px;
+  background: rgba(116,172,223,0.04);
+  transition: border-color .2s, background .2s;
+}
+
+.sponsor-item:hover {
+  border-color: rgba(116,172,223,0.35);
+  background: rgba(116,172,223,0.08);
+}
+
+.sponsor-name {
+  font-family: var(--font-bebas, 'Bebas Neue', sans-serif);
+  font-size: 1.05rem;
+  letter-spacing: .04em;
+  color: var(--blanco);
+  line-height: 1;
+}
+
+.sponsor-handle {
+  font-size: .72rem;
+  color: rgba(116,172,223,0.55);
+  margin-top: .1rem;
+}
+
+/* ── INTRO MUSICAL ────────────────────────────────── */
+@keyframes introScale {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+@keyframes introFadeUp {
+  from { transform: translateY(14px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
 /* ── UTIL ─────────────────────────────────────────── */
 .hidden { display: none !important; }
 
