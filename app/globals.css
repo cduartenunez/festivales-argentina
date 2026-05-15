@@ -779,6 +779,51 @@ body {
   margin-top: .1rem;
 }
 
+/* ── GALERÍA COMUNITARIA ─────────────────────────── */
+.galeria-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: #0d1a30;
+  cursor: default;
+}
+
+.galeria-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(3,8,16,0.92) 0%, rgba(3,8,16,0.3) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.galeria-card:hover .galeria-overlay { opacity: 1; }
+
+.galeria-festival {
+  font-family: var(--font-bebas, 'Bebas Neue', sans-serif);
+  font-size: 1.1rem;
+  letter-spacing: .04em;
+  color: var(--celeste, #74ACDF);
+  line-height: 1.1;
+  margin-bottom: .3rem;
+}
+
+.galeria-desc {
+  font-size: .8rem;
+  color: rgba(240,246,255,0.85);
+  line-height: 1.5;
+  margin-bottom: .4rem;
+}
+
+.galeria-autor {
+  font-size: .72rem;
+  color: rgba(116,172,223,0.6);
+}
+
 /* ── INTRO MUSICAL ────────────────────────────────── */
 @keyframes introScale {
   from { transform: scale(0.8); opacity: 0; }
