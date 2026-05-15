@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
 import { Festival } from '@/lib/types';
 
@@ -26,54 +29,142 @@ function formatRango(inicio: string, fin: string): string {
 }
 
 export default function FestivalCard({ festival: f }: { festival: Festival }) {
+  const [flipped, setFlipped] = useState(false);
+
   return (
-    <div className="event-card">
-      <div className="card-img-wrap">
-        {f.imagen ? (
-          <Image
-            src={f.imagen}
-            alt={f.titulo}
-            width={600}
-            height={400}
-            className="card-img"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            loading="lazy"
-            unoptimized
-          />
-        ) : (
-          <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #070f1e, #0d1a30)' }} />
-        )}
-        <span className={`card-cat-pill cat-${f.categoria}`}>
-          {CAT_LABEL[f.categoria] || f.categoria}
-        </span>
-        {f.fecha_inicio && (
-          <span className="card-date-pill">
-            {formatRango(f.fecha_inicio, f.fecha_fin)}
-          </span>
-        )}
-      </div>
+    <div
+      className={`flip-card${flipped ? ' flipped' : ''}`}
+      onClick={() => !flipped && setFlipped(true)}
+      style={{ cursor: flipped ? 'default' : 'pointer' }}
+    >
+      <div className="flip-card-inner">
 
-      <div className="card-body">
-        <h3 className="card-title">{f.titulo}</h3>
-        <p className="card-loc">📍 {f.ubicacion}</p>
-        <p className="card-desc">{f.descripcion}</p>
+        {/* ── FRENTE ─────────────────────────────── */}
+        <div className="flip-card-front event-card">
+          <div className="card-img-wrap">
+            {f.imagen ? (
+              <Image
+                src={f.imagen}
+                alt={f.titulo}
+                width={600}
+                height={400}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                loading="lazy"
+                unoptimized
+              />
+            ) : (
+              <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #070f1e, #0d1a30)' }} />
+            )}
+            <span className={`card-cat-pill cat-${f.categoria}`}>
+              {CAT_LABEL[f.categoria] || f.categoria}
+            </span>
+            {f.fecha_inicio && (
+              <span className="card-date-pill">
+                {formatRango(f.fecha_inicio, f.fecha_fin)}
+              </span>
+            )}
+          </div>
 
-        <div className="card-tags">
-          {f.gratuito && <span className="tag hot">🆓 Gratuito</span>}
-          <span className="tag">{f.mes}</span>
+          <div className="card-body">
+            <h3 className="card-title">{f.titulo}</h3>
+            <p className="card-loc">📍 {f.ubicacion}</p>
+            <p className="card-desc">{f.descripcion}</p>
+            <div className="card-tags">
+              {f.gratuito && <span className="tag hot">🆓 Gratuito</span>}
+              <span className="tag">{f.mes}</span>
+            </div>
+            <span style={{ fontSize: '.72rem', color: 'rgba(116,172,223,0.4)', marginTop: 'auto', display: 'block', paddingTop: '.5rem' }}>
+              Tocá para más info →
+            </span>
+          </div>
         </div>
 
-        <a
-          className="card-maps-btn"
-          href={`https://maps.google.com/?q=${encodeURIComponent(f.ubicacion + ' Argentina')}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <svg style={{ width: 13, height: 13, fill: 'currentColor', flexShrink: 0 }} viewBox="0 0 24 24">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-          </svg>
-          Cómo llegar
-        </a>
+        {/* ── REVERSO ────────────────────────────── */}
+        <div className="flip-card-back">
+          {/* Header con imagen de fondo difuminada */}
+          {f.imagen && (
+            <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', borderRadius: '12px' }}>
+              <Image
+                src={f.imagen}
+                alt=""
+                fill
+                style={{ objectFit: 'cover', filter: 'blur(20px) brightness(0.25) saturate(0.5)', transform: 'scale(1.1)' }}
+                unoptimized
+                aria-hidden
+              />
+            </div>
+          )}
+
+          <div className="flip-back-body">
+            {/* Categoría */}
+            <span className={`card-cat-pill cat-${f.categoria}`} style={{ position: 'static', marginBottom: '.75rem', alignSelf: 'flex-start' }}>
+              {CAT_LABEL[f.categoria] || f.categoria}
+            </span>
+
+            {/* Título */}
+            <h3 style={{
+              fontFamily: 'var(--font-bebas)',
+              fontSize: '1.7rem',
+              letterSpacing: '.03em',
+              color: 'var(--blanco)',
+              lineHeight: 1.1,
+              marginBottom: '.5rem',
+            }}>
+              {f.titulo}
+            </h3>
+
+            {/* Fechas */}
+            {f.fecha_inicio && (
+              <p style={{ fontSize: '.8rem', color: 'var(--dorado)', fontWeight: 700, marginBottom: '.5rem' }}>
+                🗓 {formatRango(f.fecha_inicio, f.fecha_fin)} · {f.mes}
+              </p>
+            )}
+
+            {/* Descripción completa */}
+            <p style={{ fontSize: '.85rem', color: 'rgba(240,246,255,0.8)', lineHeight: 1.6, flex: 1, marginBottom: '.75rem' }}>
+              {f.descripcion}
+            </p>
+
+            {/* Tags */}
+            <div className="card-tags" style={{ marginBottom: '.75rem' }}>
+              {f.gratuito && <span className="tag hot">🆓 Gratuito</span>}
+              <span className="tag">{f.mes}</span>
+            </div>
+
+            {/* Botones */}
+            <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap', marginTop: 'auto' }}>
+              <a
+                href={`https://maps.google.com/?q=${encodeURIComponent(f.ubicacion + ' Argentina')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={e => e.stopPropagation()}
+                className="flip-btn flip-btn-ghost"
+              >
+                📍 {f.ubicacion}
+              </a>
+
+              {f.link && (
+                <a
+                  href={f.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={e => e.stopPropagation()}
+                  className="flip-btn flip-btn-primary"
+                >
+                  Más info →
+                </a>
+              )}
+
+              <button
+                onClick={e => { e.stopPropagation(); setFlipped(false); }}
+                className="flip-btn flip-btn-ghost"
+              >
+                ← Volver
+              </button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   );
