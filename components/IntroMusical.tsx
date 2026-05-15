@@ -3,58 +3,26 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
-const INTRO_DURATION = 10000;
-const CROWD_DURATION = 4000;
-
 export default function IntroMusical() {
   const [visible,   setVisible]   = useState(false);
   const [fadingOut, setFadingOut] = useState(false);
-
-  const introRef   = useRef<HTMLAudioElement>(null);
-  const crowdRef   = useRef<HTMLAudioElement>(null);
-  const autoTimer  = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const crowdTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const introRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     if (!sessionStorage.getItem('intro-seen')) setVisible(true);
   }, []);
 
-  useEffect(() => {
-    if (!visible) return;
-
-    // Arrancar ambos audios al montar
+  const handleEnter = () => {
     if (introRef.current) {
-      introRef.current.volume = 0.5;
+      introRef.current.volume = 0.6;
       introRef.current.play().catch(() => {});
     }
-    if (crowdRef.current) {
-      crowdRef.current.volume = 0.8;
-      crowdRef.current.play().catch(() => {});
-    }
-
-    // Detener aplausos a los 4s
-    crowdTimer.current = setTimeout(() => {
-      try { crowdRef.current?.pause(); } catch (_) {}
-    }, CROWD_DURATION);
-
-    // Cierre automático a los 10s
-    autoTimer.current = setTimeout(() => dismiss(), INTRO_DURATION);
-
-    return () => {
-      if (autoTimer.current)  clearTimeout(autoTimer.current);
-      if (crowdTimer.current) clearTimeout(crowdTimer.current);
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible]);
-
-  const dismiss = () => {
-    if (autoTimer.current)  clearTimeout(autoTimer.current);
-    if (crowdTimer.current) clearTimeout(crowdTimer.current);
-    try { introRef.current?.pause(); } catch (_) {}
-    try { crowdRef.current?.pause(); } catch (_) {}
     setFadingOut(true);
     sessionStorage.setItem('intro-seen', '1');
-    setTimeout(() => setVisible(false), 800);
+    setTimeout(() => {
+      try { introRef.current?.pause(); } catch (_) {}
+      setVisible(false);
+    }, 3000);
   };
 
   if (!visible) return null;
@@ -67,14 +35,12 @@ export default function IntroMusical() {
         display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
         opacity: fadingOut ? 0 : 1,
-        transition: 'opacity 0.8s ease',
+        transition: 'opacity 3s ease',
         pointerEvents: fadingOut ? 'none' : 'auto',
       }}
     >
       <audio ref={introRef} src="/intro.mp3" preload="auto" />
-      <audio ref={crowdRef} src="/crowd.mp3" preload="auto" />
 
-      {/* Logo animado */}
       <div style={{ animation: 'introScale 0.8s ease forwards', marginBottom: '1.5rem' }}>
         <Image
           src="/LOGO_FESTIVALES.jpeg"
@@ -86,7 +52,6 @@ export default function IntroMusical() {
         />
       </div>
 
-      {/* Título */}
       <h1
         style={{
           fontFamily: 'var(--font-bebas)',
@@ -101,9 +66,8 @@ export default function IntroMusical() {
         <span style={{ color: '#74ACDF' }}>Argentina</span>
       </h1>
 
-      {/* Botón Entrar */}
       <button
-        onClick={dismiss}
+        onClick={handleEnter}
         style={{
           marginTop: '2.5rem',
           background: 'rgba(116,172,223,0.1)',
