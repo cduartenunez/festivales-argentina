@@ -9,53 +9,36 @@ export default function IntroMusical() {
 
   const introRef   = useRef<HTMLAudioElement>(null);
   const crowdRef   = useRef<HTMLAudioElement>(null);
-  const autoTimer  = useRef<ReturnType<typeof setTimeout> | null>(null);
   const crowdTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (!sessionStorage.getItem('intro-seen')) setVisible(true);
   }, []);
 
-  useEffect(() => {
-    if (!visible) return;
+  const handleEnter = () => {
+    // Arrancar ambos audios en el click (resuelve bloqueo de autoplay)
+    if (introRef.current) {
+      introRef.current.volume = 0.5;
+      introRef.current.play().catch(() => {});
+    }
+    if (crowdRef.current) {
+      crowdRef.current.volume = 0.8;
+      crowdRef.current.play().catch(() => {});
+    }
 
-    const playTimer = setTimeout(() => {
-      if (introRef.current) {
-        introRef.current.volume = 0.5;
-        introRef.current.play().catch(() => {});
-      }
-      if (crowdRef.current) {
-        crowdRef.current.volume = 0.8;
-        crowdRef.current.play().catch(() => {});
-      }
-      // Detener aplausos a los 4 segundos
-      crowdTimer.current = setTimeout(() => {
-        try { crowdRef.current?.pause(); } catch (_) {}
-      }, 4000);
-    }, 200);
+    // Detener aplausos después de 4s
+    crowdTimer.current = setTimeout(() => {
+      try { crowdRef.current?.pause(); } catch (_) {}
+    }, 4000);
 
-    // Auto-dismiss a los 4 segundos
-    autoTimer.current = setTimeout(() => handleDismiss(), 4000);
-
-    return () => {
-      clearTimeout(playTimer);
-      if (autoTimer.current)  clearTimeout(autoTimer.current);
-      if (crowdTimer.current) clearTimeout(crowdTimer.current);
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible]);
-
-  const handleDismiss = () => {
-    if (autoTimer.current)  clearTimeout(autoTimer.current);
-    if (crowdTimer.current) clearTimeout(crowdTimer.current);
+    // Fade-out en 2 segundos
     setFadingOut(true);
-    try { crowdRef.current?.pause(); } catch (_) {}
     sessionStorage.setItem('intro-seen', '1');
-    // Fade-out 600ms, después detener intro.mp3
     setTimeout(() => {
       try { introRef.current?.pause(); } catch (_) {}
+      if (crowdTimer.current) clearTimeout(crowdTimer.current);
       setVisible(false);
-    }, 600);
+    }, 2000);
   };
 
   if (!visible) return null;
@@ -68,7 +51,7 @@ export default function IntroMusical() {
         display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
         opacity: fadingOut ? 0 : 1,
-        transition: 'opacity 0.6s ease',
+        transition: 'opacity 2s ease',
         pointerEvents: fadingOut ? 'none' : 'auto',
       }}
     >
@@ -102,22 +85,23 @@ export default function IntroMusical() {
         <span style={{ color: '#74ACDF' }}>Argentina</span>
       </h1>
 
-      {/* Botón saltar */}
+      {/* Botón Entrar */}
       <button
-        onClick={handleDismiss}
+        onClick={handleEnter}
         style={{
           marginTop: '2.5rem',
-          background: 'transparent',
-          border: '1px solid rgba(116,172,223,0.3)',
-          color: 'rgba(116,172,223,0.65)',
+          background: 'rgba(116,172,223,0.1)',
+          border: '1px solid rgba(116,172,223,0.45)',
+          color: '#74ACDF',
           borderRadius: '8px',
-          padding: '.5rem 2rem',
-          fontSize: '.85rem',
+          padding: '.6rem 2.5rem',
+          fontSize: '1rem',
           cursor: 'pointer',
           fontFamily: 'var(--font-dm-sans)',
-          letterSpacing: '.04em',
-          animation: 'introFadeUp 0.8s ease 0.6s both',
-          transition: 'border-color .2s, color .2s',
+          fontWeight: 600,
+          letterSpacing: '.06em',
+          animation: 'introFadeUp 0.8s ease 0.5s both',
+          transition: 'background .2s, border-color .2s',
         }}
       >
         Entrar →
