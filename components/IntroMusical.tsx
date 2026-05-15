@@ -3,29 +3,57 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
+const FADE_VISUAL_MS  = 1000;   // fade-out visual del overlay
+const MUSIC_LINGER_MS = 15000;  // música sigue después del cierre visual
+const VOL_FADE_MS     = 2000;   // duración del fade de volumen al final
+
 export default function IntroMusical() {
-  const [visible,   setVisible]   = useState(false);
-  const [fadingOut, setFadingOut] = useState(false);
-  const introRef = useRef<HTMLAudioElement>(null);
+  const [phase, setPhase] = useState<'hidden' | 'intro' | 'audio-only' | 'done'>('hidden');
+  const introRef    = useRef<HTMLAudioElement>(null);
+  const volInterval = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
-    if (!sessionStorage.getItem('intro-seen')) setVisible(true);
+    if (!sessionStorage.getItem('intro-seen')) setPhase('intro');
   }, []);
 
   const handleEnter = () => {
+    // 1. Arrancar audio
     if (introRef.current) {
       introRef.current.volume = 0.6;
       introRef.current.play().catch(() => {});
     }
-    setFadingOut(true);
     sessionStorage.setItem('intro-seen', '1');
+
+    // 2. Fade-out visual rápido (1s), audio sigue
+    setPhase('audio-only');
+
+    // 3. Después de MUSIC_LINGER_MS, fade de volumen
     setTimeout(() => {
-      try { introRef.current?.pause(); } catch (_) {}
-      setVisible(false);
-    }, 3000);
+      const audio = introRef.current;
+      if (!audio) { setPhase('done'); return; }
+
+      const steps    = 30;
+      const stepMs   = VOL_FADE_MS / steps;
+      const stepVol  = audio.volume / steps;
+
+      volInterval.current = setInterval(() => {
+        if (!introRef.current) { cleanup(); return; }
+        const next = Math.max(0, introRef.current.volume - stepVol);
+        introRef.current.volume = next;
+        if (next <= 0) {
+          introRef.current.pause();
+          cleanup();
+        }
+      }, stepMs);
+    }, MUSIC_LINGER_MS);
   };
 
-  if (!visible) return null;
+  const cleanup = () => {
+    if (volInterval.current) clearInterval(volInterval.current);
+    setPhase('done');
+  };
+
+  if (phase === 'hidden' || phase === 'done') return null;
 
   return (
     <div
@@ -34,9 +62,10 @@ export default function IntroMusical() {
         background: '#030810',
         display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
-        opacity: fadingOut ? 0 : 1,
-        transition: 'opacity 3s ease',
-        pointerEvents: fadingOut ? 'none' : 'auto',
+        // Overlay invisible pero en DOM durante fase audio-only
+        opacity: phase === 'audio-only' ? 0 : 1,
+        pointerEvents: phase === 'audio-only' ? 'none' : 'auto',
+        transition: `opacity ${FADE_VISUAL_MS}ms ease`,
       }}
     >
       <audio ref={introRef} src="/intro.mp3" preload="auto" />
