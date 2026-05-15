@@ -9,15 +9,17 @@ export default function Header() {
 
   return (
     <header className="navbar">
-      <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+      <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none', fontFamily: 'var(--font-bebas)', fontSize: '1.6rem', letterSpacing: '0.03em', lineHeight: 1 }}>
         <Image
           src="/LOGO_FESTIVALES.jpeg"
           alt="Festivales de Argentina"
-          height={48}
-          width={160}
-          style={{ height: 48, width: 'auto', objectFit: 'contain' }}
+          height={52}
+          width={52}
+          style={{ borderRadius: '50%', objectFit: 'cover' }}
           priority
         />
+        <span style={{ color: '#fff' }}>Festivales de </span>
+        <span style={{ color: '#74ACDF' }}>Argentina</span>
       </Link>
 
       <nav style={{ display: 'flex', gap: '.5rem' }}>
