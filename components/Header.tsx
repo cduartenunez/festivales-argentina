@@ -17,37 +17,33 @@ export default function Header() {
         <Image
           src="/LOGO_FESTIVALES.jpeg"
           alt="Festivales de Argentina"
-          height={52}
-          width={52}
-          style={{ borderRadius: '50%', objectFit: 'cover' }}
+          height={44}
+          width={44}
+          style={{ borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}
           priority
         />
-        <span style={{ color: '#F0F6FF' }}>Festivales de </span>
-        <span style={{ color: '#74ACDF' }}>Argentina</span>
+        <span className="navbar-logo-text">
+          <span style={{ color: '#F0F6FF' }}>Festivales de </span>
+          <span style={{ color: '#74ACDF' }}>Argentina</span>
+        </span>
       </Link>
 
-      <nav style={{ display: 'flex', gap: '.5rem', alignItems: 'center' }}>
-        <Link href="/"           className={`nav-link${path === '/'           ? ' active' : ''}`}>{tx.nav.festivals}</Link>
-        <Link href="/calendario" className={`nav-link${path === '/calendario' ? ' active' : ''}`}>{tx.nav.calendar}</Link>
+      <nav style={{ display: 'flex', gap: '.35rem', alignItems: 'center' }}>
+        <Link href="/"           className={`nav-link${path === '/'           ? ' active' : ''}`}>
+          <span className="nav-icon">🗺️</span>
+          <span className="nav-label">{lang === 'es' ? 'Festivales' : 'Festivals'}</span>
+        </Link>
+        <Link href="/calendario" className={`nav-link${path === '/calendario' ? ' active' : ''}`}>
+          <span className="nav-icon">📅</span>
+          <span className="nav-label">{lang === 'es' ? 'Calendario' : 'Calendar'}</span>
+        </Link>
 
         <button
           onClick={toggle}
           title={lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
-          style={{
-            background: 'transparent',
-            border: '1px solid rgba(116,172,223,0.25)',
-            color: 'rgba(116,172,223,0.7)',
-            borderRadius: '6px',
-            padding: '.35rem .75rem',
-            fontSize: '.78rem',
-            fontWeight: 700,
-            cursor: 'pointer',
-            letterSpacing: '.06em',
-            marginLeft: '.25rem',
-            transition: 'all .2s',
-          }}
+          className="lang-toggle"
         >
-          {lang === 'es' ? 'ES | EN' : 'EN | ES'}
+          {lang === 'es' ? 'ES' : 'EN'}
         </button>
       </nav>
     </header>

@@ -168,6 +168,29 @@ body {
   justify-content: space-between;
 }
 
+/* Texto del logo (se oculta en mobile) */
+.navbar-logo-text {
+  display: flex;
+  align-items: baseline;
+  gap: .3rem;
+}
+
+/* Toggle de idioma */
+.lang-toggle {
+  background: transparent;
+  border: 1px solid rgba(116,172,223,0.25);
+  color: rgba(116,172,223,0.7);
+  border-radius: 6px;
+  padding: .35rem .75rem;
+  font-size: .78rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: .06em;
+  margin-left: .25rem;
+  transition: all .2s;
+  font-family: inherit;
+}
+
 .navbar-logo {
   font-family: var(--font-bebas, 'Bebas Neue', sans-serif);
   font-size: 1.5rem;
@@ -681,8 +704,21 @@ body {
 /* ── UTIL ─────────────────────────────────────────── */
 .hidden { display: none !important; }
 
+@media(max-width: 768px) {
+  /* Navbar: ocultar texto del logo */
+  .navbar-logo-text { display: none; }
+
+  /* Nav links: ocultar etiqueta, mostrar solo ícono */
+  .nav-label { display: none; }
+  .nav-link  { padding: .4rem .6rem; }
+
+  /* Toggle idioma más compacto */
+  .lang-toggle { padding: .3rem .5rem; font-size: .7rem; margin-left: .1rem; }
+}
+
 @media(max-width: 640px) {
-  .hero-title { font-size: clamp(3rem, 14vw, 5rem); }
+  /* Hero title más chico para que no se corte en pantallas pequeñas */
+  .hero-title { font-size: clamp(2.5rem, 11vw, 4rem); }
   .hero-stats { gap: 1.5rem; }
   .cards-grid { grid-template-columns: 1fr; gap: 1rem; }
   .filter-bar input { width: 100%; }
