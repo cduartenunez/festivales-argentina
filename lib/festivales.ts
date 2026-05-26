@@ -71,6 +71,21 @@ export function agruparPorMes(festivales: Festival[]): Record<string, Festival[]
   return grupos;
 }
 
+export function toSlug(titulo: string): string {
+  return titulo
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+}
+
+export async function getFestivalBySlug(slug: string): Promise<Festival | null> {
+  const festivales = await getFestivales();
+  return festivales.find(f => toSlug(f.titulo) === slug) ?? null;
+}
+
 export function formatFecha(fecha: string): { dia: string; mes: string } {
   if (!fecha) return { dia: '—', mes: '' };
   const d = new Date(fecha + 'T12:00:00');
