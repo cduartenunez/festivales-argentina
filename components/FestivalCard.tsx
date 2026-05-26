@@ -4,6 +4,32 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Festival } from '@/lib/types';
 
+function buildEventSchema(f: Festival) {
+  const schema: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: f.titulo,
+    location: {
+      '@type': 'Place',
+      name: f.ubicacion,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: f.ubicacion,
+        addressCountry: 'AR',
+      },
+    },
+    description: f.descripcion,
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  };
+  if (f.fecha_inicio) schema.startDate = f.fecha_inicio;
+  schema.endDate = f.fecha_fin || f.fecha_inicio || undefined;
+  if (f.imagen) schema.image = f.imagen;
+  if (f.link) schema.url = f.link;
+  if (f.gratuito !== undefined) schema.isAccessibleForFree = f.gratuito;
+  return schema;
+}
+
 const CAT_LABEL: Record<string, string> = {
   folklore:  '🎵 Folklore',
   gastro:    '🍽️ Gastronomía',
@@ -31,8 +57,12 @@ function formatRango(inicio: string, fin: string): string {
 export default function FestivalCard({ festival: f }: { festival: Festival }) {
   const [flipped, setFlipped] = useState(false);
 
+  const jsonLd = JSON.stringify(buildEventSchema(f)).replace(/<\/script/gi, '<\\/script');
+
   return (
-    <div
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
+      <div
       className={`flip-card${flipped ? ' flipped' : ''}`}
       onClick={() => !flipped && setFlipped(true)}
       style={{ cursor: flipped ? 'default' : 'pointer' }}
@@ -167,5 +197,6 @@ export default function FestivalCard({ festival: f }: { festival: Festival }) {
 
       </div>
     </div>
+    </>
   );
 }
