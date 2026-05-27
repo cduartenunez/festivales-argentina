@@ -1,8 +1,10 @@
 {
   "/_global-error/page": "/_global-error",
   "/_not-found/page": "/_not-found",
+  "/api/newsletter/route": "/api/newsletter",
   "/calendario/page": "/calendario",
   "/favicon.ico/route": "/favicon.ico",
+  "/festivales/[slug]/page": "/festivales/[slug]",
   "/galeria/page": "/galeria",
   "/page": "/",
   "/sponsors/page": "/sponsors"

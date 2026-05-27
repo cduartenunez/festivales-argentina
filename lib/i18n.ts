@@ -61,6 +61,21 @@ export function t(lang: Lang) {
         ? `${n} ${n === 1 ? 'festival' : 'festivales'}`
         : `${n} ${n === 1 ? 'festival' : 'festivals'}`,
     },
+    newsletter: {
+      heading:      es ? 'Sumate a la comunidad festivalera' : 'Join the festival community',
+      subtitle:     es
+        ? 'Recibí cada mes los festivales más destacados, novedades culturales y recomendaciones directas en tu casilla.'
+        : 'Get the top festivals, cultural news and curated recommendations delivered to your inbox every month.',
+      label:        es ? '✉ Suscribite al newsletter' : '✉ Subscribe to our newsletter',
+      namePlaceholder:  es ? 'Tu nombre' : 'Your name',
+      emailPlaceholder: es ? 'Tu email' : 'Your email',
+      cta:          es ? 'Suscribirme →' : 'Subscribe →',
+      loading:      es ? 'Enviando...' : 'Sending...',
+      success:      es ? '¡Listo! Pronto vas a recibir novedades en tu casilla.' : 'Done! You\'ll hear from us soon.',
+      successShort: es ? '¡Gracias! Te escribimos pronto.' : 'Thanks! Talk soon.',
+      error:        es ? 'Algo falló. Intentá de nuevo.' : 'Something went wrong. Please try again.',
+      disclaimer:   es ? 'Sin spam. Podés darte de baja cuando quieras.' : 'No spam. Unsubscribe anytime.',
+    },
     footer: {
       tagline: es
         ? 'El directorio más completo de festivales y eventos culturales del país.'

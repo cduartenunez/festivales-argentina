@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useLang } from '@/context/LangContext';
 import { t } from '@/lib/i18n';
+import NewsletterForm from '@/components/NewsletterForm';
 
 export default function Footer() {
   const { lang } = useLang();
@@ -23,7 +24,8 @@ export default function Footer() {
           <span style={{ color: '#74ACDF' }}>Argentina</span>
         </span>
       </div>
-      <p style={{ fontSize: '.9rem', marginBottom: '.5rem' }}>{tx.footer.tagline}</p>
+      <p style={{ fontSize: '.9rem', marginBottom: '1.75rem' }}>{tx.footer.tagline}</p>
+      <NewsletterForm compact />
       <small style={{ fontSize: '.75rem', color: 'rgba(116,172,223,0.35)' }}>
         © {new Date().getFullYear()} festivalesdeargentina.com.ar
       </small>
