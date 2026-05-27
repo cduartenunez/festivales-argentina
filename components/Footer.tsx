@@ -25,7 +25,7 @@ export default function Footer() {
         </span>
       </div>
       <p style={{ fontSize: '.9rem', marginBottom: '1.75rem' }}>{tx.footer.tagline}</p>
-      <NewsletterForm compact />
+      <NewsletterForm />
       <small style={{ fontSize: '.75rem', color: 'rgba(116,172,223,0.35)' }}>
         © {new Date().getFullYear()} festivalesdeargentina.com.ar
       </small>

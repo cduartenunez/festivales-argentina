@@ -7,15 +7,18 @@ import { t } from '@/lib/i18n';
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
 const inp: React.CSSProperties = {
+  width: '100%',
   background: 'rgba(7,15,30,0.8)',
   border: '1px solid rgba(116,172,223,0.18)',
   color: '#F0F6FF',
+  padding: '.6rem 1rem',
   borderRadius: '8px',
+  fontSize: '.88rem',
   fontFamily: 'inherit',
   outline: 'none',
 };
 
-export default function NewsletterForm({ compact = false }: { compact?: boolean }) {
+export default function NewsletterForm() {
   const { lang } = useLang();
   const tx = t(lang).newsletter;
   const [nombre, setNombre] = useState('');
@@ -43,69 +46,22 @@ export default function NewsletterForm({ compact = false }: { compact?: boolean 
     }
   };
 
-  if (compact) {
-    return (
-      <div className="newsletter-compact">
-        <p className="newsletter-compact-label">{tx.label}</p>
-        {status === 'success' ? (
-          <p className="newsletter-compact-ok">{tx.successShort}</p>
-        ) : (
-          <form onSubmit={handleSubmit} className="newsletter-compact-form">
-            <input
-              type="text"
-              required
-              placeholder={tx.namePlaceholder}
-              value={nombre}
-              onChange={e => setNombre(e.target.value)}
-              style={{ ...inp, padding: '.5rem .85rem', fontSize: '.82rem' }}
-            />
-            <input
-              type="email"
-              required
-              placeholder={tx.emailPlaceholder}
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              style={{ ...inp, padding: '.5rem .85rem', fontSize: '.82rem' }}
-            />
-            <button
-              type="submit"
-              disabled={status === 'loading'}
-              className="newsletter-compact-btn"
-            >
-              {status === 'loading' ? '...' : tx.cta}
-            </button>
-          </form>
-        )}
-        {status === 'error' && (
-          <p className="newsletter-error">{tx.error}</p>
-        )}
-      </div>
-    );
-  }
-
   return (
-    <section className="newsletter-section">
-      <div className="newsletter-inner">
-        <div className="newsletter-text">
-          <span className="newsletter-badge">✉ Newsletter</span>
-          <h2 className="newsletter-title">{tx.heading}</h2>
-          <p className="newsletter-subtitle">{tx.subtitle}</p>
-        </div>
+    <div className="nl">
+      <p className="nl-heading">{tx.label}</p>
 
-        {status === 'success' ? (
-          <div className="newsletter-success">
-            <span style={{ fontSize: '2rem' }}>🎉</span>
-            <p className="newsletter-success-msg">{tx.success}</p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="newsletter-form">
+      {status === 'success' ? (
+        <p className="nl-success">{tx.successShort}</p>
+      ) : (
+        <>
+          <form onSubmit={handleSubmit} className="nl-form">
             <input
               type="text"
               required
               placeholder={tx.namePlaceholder}
               value={nombre}
               onChange={e => setNombre(e.target.value)}
-              style={{ ...inp, padding: '.7rem 1.1rem', fontSize: '.92rem', flex: '1 1 160px' }}
+              style={inp}
             />
             <input
               type="email"
@@ -113,25 +69,16 @@ export default function NewsletterForm({ compact = false }: { compact?: boolean 
               placeholder={tx.emailPlaceholder}
               value={email}
               onChange={e => setEmail(e.target.value)}
-              style={{ ...inp, padding: '.7rem 1.1rem', fontSize: '.92rem', flex: '2 1 220px' }}
+              style={inp}
             />
-            <button
-              type="submit"
-              disabled={status === 'loading'}
-              className="newsletter-btn"
-            >
+            <button type="submit" disabled={status === 'loading'} className="nl-btn">
               {status === 'loading' ? tx.loading : tx.cta}
             </button>
           </form>
-        )}
-
-        {status === 'error' && (
-          <p className="newsletter-error">{tx.error}</p>
-        )}
-        {status !== 'success' && (
-          <p className="newsletter-disclaimer">{tx.disclaimer}</p>
-        )}
-      </div>
-    </section>
+          {status === 'error' && <p className="nl-error">{tx.error}</p>}
+          <p className="nl-disclaimer">{tx.disclaimer}</p>
+        </>
+      )}
+    </div>
   );
 }

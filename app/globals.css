@@ -835,162 +835,68 @@ body {
   to   { transform: translateY(0);    opacity: 1; }
 }
 
-/* ── NEWSLETTER ───────────────────────────────────── */
-.newsletter-section {
-  background: var(--bg2);
+/* ── NEWSLETTER (footer) ──────────────────────────── */
+.nl {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto 2rem;
+  padding-top: 2rem;
   border-top: 1px solid var(--borde);
-  border-bottom: 1px solid var(--borde);
-  padding: 4rem 5vw;
-}
-
-.newsletter-inner {
-  max-width: 860px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.75rem;
-  text-align: center;
+  gap: .75rem;
 }
 
-.newsletter-badge {
-  display: inline-block;
-  border: 1px solid var(--celeste);
-  color: var(--celeste);
+.nl-heading {
   font-size: .72rem;
   font-weight: 700;
-  letter-spacing: .15em;
+  letter-spacing: .12em;
   text-transform: uppercase;
-  padding: .28rem .95rem;
-  border-radius: 20px;
-  margin-bottom: .5rem;
-  opacity: .9;
+  color: var(--celeste);
+  opacity: .8;
 }
 
-.newsletter-title {
+.nl-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+}
+
+.nl-btn {
+  width: 100%;
+  background: var(--celeste);
+  color: var(--bg);
+  border: none;
+  border-radius: 8px;
+  padding: .65rem 1rem;
   font-family: var(--font-bebas, 'Bebas Neue', sans-serif);
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  letter-spacing: .03em;
-  color: var(--blanco);
-  line-height: 1;
-}
-
-.newsletter-subtitle {
-  color: var(--gris);
   font-size: .95rem;
-  max-width: 540px;
-  line-height: 1.65;
-}
-
-.newsletter-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .6rem;
-  width: 100%;
-  max-width: 700px;
-  justify-content: center;
-}
-
-.newsletter-btn {
-  background: var(--celeste);
-  color: var(--bg);
-  border: none;
-  border-radius: 8px;
-  padding: .7rem 1.6rem;
-  font-family: var(--font-bebas, 'Bebas Neue', sans-serif);
-  font-size: 1rem;
-  letter-spacing: .06em;
+  letter-spacing: .07em;
   cursor: pointer;
-  white-space: nowrap;
   transition: background .2s;
-  flex-shrink: 0;
+  margin-top: .1rem;
 }
 
-.newsletter-btn:hover:not(:disabled) { background: var(--celeste2); }
-.newsletter-btn:disabled { opacity: .55; cursor: default; }
+.nl-btn:hover:not(:disabled) { background: var(--celeste2); }
+.nl-btn:disabled { opacity: .5; cursor: default; }
 
-.newsletter-success {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .75rem;
-}
-
-.newsletter-success-msg {
+.nl-success {
   color: var(--celeste);
-  font-size: 1rem;
+  font-size: .88rem;
   font-weight: 600;
+  padding: .5rem 0;
 }
 
-.newsletter-error {
+.nl-error {
   color: #ff6b6b;
-  font-size: .82rem;
-  margin-top: -.5rem;
+  font-size: .78rem;
 }
 
-.newsletter-disclaimer {
-  font-size: .75rem;
-  color: rgba(116,172,223,0.35);
-  margin-top: -.5rem;
-}
-
-/* Compact (footer) */
-.newsletter-compact {
-  border-top: 1px solid var(--borde);
-  padding-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .75rem;
-}
-
-.newsletter-compact-label {
-  font-size: .75rem;
-  color: rgba(116,172,223,0.55);
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-.newsletter-compact-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .5rem;
-  justify-content: center;
-}
-
-.newsletter-compact-btn {
-  background: var(--celeste);
-  color: var(--bg);
-  border: none;
-  border-radius: 8px;
-  padding: .5rem 1.1rem;
-  font-family: var(--font-bebas, 'Bebas Neue', sans-serif);
-  font-size: .9rem;
-  letter-spacing: .06em;
-  cursor: pointer;
-  transition: background .2s;
-  white-space: nowrap;
-}
-
-.newsletter-compact-btn:hover:not(:disabled) { background: var(--celeste2); }
-.newsletter-compact-btn:disabled { opacity: .55; cursor: default; }
-
-.newsletter-compact-ok {
-  color: var(--celeste);
-  font-size: .85rem;
-  font-weight: 600;
-}
-
-@media(max-width: 640px) {
-  .newsletter-form { flex-direction: column; align-items: stretch; }
-  .newsletter-form input,
-  .newsletter-btn { width: 100%; }
-  .newsletter-compact-form { flex-direction: column; align-items: stretch; }
-  .newsletter-compact-form input,
-  .newsletter-compact-btn { width: 100%; }
+.nl-disclaimer {
+  font-size: .72rem;
+  color: rgba(116,172,223,0.3);
 }
 
 /* ── UTIL ─────────────────────────────────────────── */

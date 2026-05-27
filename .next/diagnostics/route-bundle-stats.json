@@ -1,9 +1,9 @@
 [
   {
     "route": "/",
-    "firstLoadUncompressedJsBytes": 556759,
+    "firstLoadUncompressedJsBytes": 555288,
     "firstLoadChunkPaths": [
-      ".next\\static\\chunks\\17cr-.rqtpt8s.js",
+      ".next\\static\\chunks\\02sx~w.4yso_q.js",
       ".next\\static\\chunks\\0d3shmwh5_nmn.js",
       ".next\\static\\chunks\\0eo1gj1222c3e.js",
       ".next\\static\\chunks\\00d.p9zz2jh0..js",
@@ -14,9 +14,9 @@
   },
   {
     "route": "/sponsors",
-    "firstLoadUncompressedJsBytes": 551181,
+    "firstLoadUncompressedJsBytes": 549710,
     "firstLoadChunkPaths": [
-      ".next\\static\\chunks\\17cr-.rqtpt8s.js",
+      ".next\\static\\chunks\\02sx~w.4yso_q.js",
       ".next\\static\\chunks\\0d3shmwh5_nmn.js",
       ".next\\static\\chunks\\0~uwvqm35j2_a.js",
       ".next\\static\\chunks\\00d.p9zz2jh0..js",
@@ -27,9 +27,9 @@
   },
   {
     "route": "/galeria",
-    "firstLoadUncompressedJsBytes": 551111,
+    "firstLoadUncompressedJsBytes": 549640,
     "firstLoadChunkPaths": [
-      ".next\\static\\chunks\\17cr-.rqtpt8s.js",
+      ".next\\static\\chunks\\02sx~w.4yso_q.js",
       ".next\\static\\chunks\\0d3shmwh5_nmn.js",
       ".next\\static\\chunks\\10pc9sq0c.ca5.js",
       ".next\\static\\chunks\\00d.p9zz2jh0..js",
@@ -40,9 +40,9 @@
   },
   {
     "route": "/_not-found",
-    "firstLoadUncompressedJsBytes": 546935,
+    "firstLoadUncompressedJsBytes": 545464,
     "firstLoadChunkPaths": [
-      ".next\\static\\chunks\\17cr-.rqtpt8s.js",
+      ".next\\static\\chunks\\02sx~w.4yso_q.js",
       ".next\\static\\chunks\\0d3shmwh5_nmn.js",
       ".next\\static\\chunks\\00d.p9zz2jh0..js",
       ".next\\static\\chunks\\0~6pi17p4g3wz.js",
@@ -52,9 +52,9 @@
   },
   {
     "route": "/calendario",
-    "firstLoadUncompressedJsBytes": 546935,
+    "firstLoadUncompressedJsBytes": 545464,
     "firstLoadChunkPaths": [
-      ".next\\static\\chunks\\17cr-.rqtpt8s.js",
+      ".next\\static\\chunks\\02sx~w.4yso_q.js",
       ".next\\static\\chunks\\0d3shmwh5_nmn.js",
       ".next\\static\\chunks\\00d.p9zz2jh0..js",
       ".next\\static\\chunks\\0~6pi17p4g3wz.js",
@@ -64,9 +64,9 @@
   },
   {
     "route": "/festivales/[slug]",
-    "firstLoadUncompressedJsBytes": 546935,
+    "firstLoadUncompressedJsBytes": 545464,
     "firstLoadChunkPaths": [
-      ".next\\static\\chunks\\17cr-.rqtpt8s.js",
+      ".next\\static\\chunks\\02sx~w.4yso_q.js",
       ".next\\static\\chunks\\0d3shmwh5_nmn.js",
       ".next\\static\\chunks\\00d.p9zz2jh0..js",
       ".next\\static\\chunks\\0~6pi17p4g3wz.js",
