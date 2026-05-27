@@ -13,8 +13,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/",
       "dataRoute": "/index.rsc",
       "allowHeader": [
@@ -87,8 +86,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/calendario",
       "dataRoute": "/calendario.rsc",
       "allowHeader": [
@@ -141,8 +139,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/16-fiesta-del-asado-pampeano.rsc",
       "allowHeader": [
@@ -166,8 +163,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/46-fiesta-nacional-de-la-empanada.rsc",
       "allowHeader": [
@@ -191,8 +187,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/46-fiesta-nacional-del-inmigrante.rsc",
       "allowHeader": [
@@ -216,8 +211,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/arteba.rsc",
       "allowHeader": [
@@ -241,8 +235,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/ba-playa-2026.rsc",
       "allowHeader": [
@@ -266,8 +259,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/bafici-2027.rsc",
       "allowHeader": [
@@ -291,8 +283,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/caminos-y-sabores.rsc",
       "allowHeader": [
@@ -316,8 +307,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/carnaval-andino.rsc",
       "allowHeader": [
@@ -341,8 +331,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/carnaval-de-gualeguaychu.rsc",
       "allowHeader": [
@@ -366,8 +355,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/carnaval-de-la-quebrada-de-humahuaca.rsc",
       "allowHeader": [
@@ -391,8 +379,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/carnaval-de-victoria.rsc",
       "allowHeader": [
@@ -416,8 +403,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/cosquin-rock-2026.rsc",
       "allowHeader": [
@@ -441,8 +427,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/cultura-de-verano-ba.rsc",
       "allowHeader": [
@@ -466,8 +451,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/feria-de-mataderos.rsc",
       "allowHeader": [
@@ -491,8 +475,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/feria-internacional-del-libro.rsc",
       "allowHeader": [
@@ -516,8 +499,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/feria-masticar.rsc",
       "allowHeader": [
@@ -541,8 +523,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/festival-de-cerveza-artesanal-de-bariloche.rsc",
       "allowHeader": [
@@ -566,8 +547,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/festival-de-globos-aerostaticos.rsc",
       "allowHeader": [
@@ -591,8 +571,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/festival-de-tango-de-marcos-paz.rsc",
       "allowHeader": [
@@ -616,8 +595,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/festival-internacional-de-cine-de-mar-del-plata.rsc",
       "allowHeader": [
@@ -641,8 +619,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/festival-internacional-de-musica-clasica-de-ushuaia.rsc",
       "allowHeader": [
@@ -666,8 +643,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/festival-nacional-de-folklore-de-cosquin.rsc",
       "allowHeader": [
@@ -691,8 +667,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/festival-nacional-de-la-doma-y-el-folklore.rsc",
       "allowHeader": [
@@ -716,8 +691,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/festival-nacional-de-la-papa.rsc",
       "allowHeader": [
@@ -741,8 +715,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/festival-nacional-del-chamame.rsc",
       "allowHeader": [
@@ -766,8 +739,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/festival-nacional-del-limon.rsc",
       "allowHeader": [
@@ -791,8 +763,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/festival-nacional-del-malambo.rsc",
       "allowHeader": [
@@ -816,8 +787,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/festival-nacional-folclore-en-el-agua.rsc",
       "allowHeader": [
@@ -841,8 +811,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/festival-y-mundial-de-tango-ba.rsc",
       "allowHeader": [
@@ -866,8 +835,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-de-la-empanada-criolla.rsc",
       "allowHeader": [
@@ -891,8 +859,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-de-la-picada-y-cerveza-artesanal.rsc",
       "allowHeader": [
@@ -916,8 +883,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-de-la-vendimia-de-san-juan.rsc",
       "allowHeader": [
@@ -941,8 +907,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-de-la-apicultura.rsc",
       "allowHeader": [
@@ -966,8 +931,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-de-la-chaya.rsc",
       "allowHeader": [
@@ -991,8 +955,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-de-la-esquila.rsc",
       "allowHeader": [
@@ -1016,8 +979,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-de-la-flor.rsc",
       "allowHeader": [
@@ -1041,8 +1003,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-de-la-frutilla.rsc",
       "allowHeader": [
@@ -1066,8 +1027,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-de-la-leche.rsc",
       "allowHeader": [
@@ -1091,8 +1051,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-de-la-mandarina.rsc",
       "allowHeader": [
@@ -1116,8 +1075,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-de-la-manzana.rsc",
       "allowHeader": [
@@ -1141,8 +1099,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-de-la-masa-vienesa.rsc",
       "allowHeader": [
@@ -1166,8 +1123,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-de-la-miel.rsc",
       "allowHeader": [
@@ -1191,8 +1147,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-de-la-navidad.rsc",
       "allowHeader": [
@@ -1216,8 +1171,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-de-la-pasta-casera.rsc",
       "allowHeader": [
@@ -1241,8 +1195,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-de-la-tradicion.rsc",
       "allowHeader": [
@@ -1266,8 +1219,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-de-la-vendimia.rsc",
       "allowHeader": [
@@ -1291,8 +1243,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-del-chocolate-alpino.rsc",
       "allowHeader": [
@@ -1316,8 +1267,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-del-chorizo-artesanal.rsc",
       "allowHeader": [
@@ -1341,8 +1291,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-del-cordero.rsc",
       "allowHeader": [
@@ -1366,8 +1315,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-del-dorado.rsc",
       "allowHeader": [
@@ -1391,8 +1339,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-del-lupulo.rsc",
       "allowHeader": [
@@ -1416,8 +1363,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-del-maiz.rsc",
       "allowHeader": [
@@ -1441,8 +1387,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-del-mar-y-el-acampante.rsc",
       "allowHeader": [
@@ -1466,8 +1411,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-del-pacu.rsc",
       "allowHeader": [
@@ -1491,8 +1435,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-del-pomelo.rsc",
       "allowHeader": [
@@ -1516,8 +1459,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-del-salame-casero.rsc",
       "allowHeader": [
@@ -1541,8 +1483,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-del-sol.rsc",
       "allowHeader": [
@@ -1566,8 +1507,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-del-surubi.rsc",
       "allowHeader": [
@@ -1591,8 +1531,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-del-te.rsc",
       "allowHeader": [
@@ -1616,8 +1555,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-del-ternero-y-dia-de-la-yerra.rsc",
       "allowHeader": [
@@ -1641,8 +1579,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/fiesta-nacional-del-trigo.rsc",
       "allowHeader": [
@@ -1666,8 +1603,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/lollapalooza-argentina-2027.rsc",
       "allowHeader": [
@@ -1691,8 +1627,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/mercado-de-navidad-buenos-aires.rsc",
       "allowHeader": [
@@ -1716,8 +1651,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/noche-de-los-museos-2027.rsc",
       "allowHeader": [
@@ -1741,8 +1675,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/noche-mas-larga-del-ano.rsc",
       "allowHeader": [
@@ -1766,8 +1699,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/oktoberfest-argentina.rsc",
       "allowHeader": [
@@ -1791,8 +1723,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/serenata-a-cafayate.rsc",
       "allowHeader": [
@@ -1816,8 +1747,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/serenata-a-cafayate-invierno.rsc",
       "allowHeader": [
@@ -1841,8 +1771,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/shows-de-temporada-cierre-de-ano.rsc",
       "allowHeader": [
@@ -1866,8 +1795,7 @@
           "value": "multipart/form-data;.*"
         }
       ],
-      "initialRevalidateSeconds": 3600,
-      "initialExpireSeconds": 31536000,
+      "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/we-xipantu-ano-nuevo-mapuche.rsc",
       "allowHeader": [
