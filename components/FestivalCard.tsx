@@ -27,6 +27,9 @@ function buildEventSchema(f: Festival) {
   if (f.imagen) schema.image = f.imagen;
   if (f.link) schema.url = f.link;
   if (f.gratuito !== undefined) schema.isAccessibleForFree = f.gratuito;
+  schema.organizer = { '@type': 'Organization', name: 'Festivales de Argentina', url: 'https://festivalesdeargentina.com.ar' };
+  schema.offers = { '@type': 'Offer', availability: 'https://schema.org/InStock', price: '0', priceCurrency: 'ARS' };
+  schema.performer = { '@type': 'PerformingGroup', name: 'Artistas del festival' };
   return schema;
 }
 
