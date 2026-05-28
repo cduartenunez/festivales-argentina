@@ -8,7 +8,7 @@
 
 Estimado/a equipo de la Secretaría de Turismo de [PROVINCIA],
 
-Mi nombre es [NOMBRE] y soy parte del equipo de **Festivales de Argentina** (festivalesdeargentina.com.ar), un directorio digital gratuito dedicado exclusivamente a difundir los festivales y eventos culturales de todo el país.
+Mi nombre es Claudio Duarte y soy parte del equipo de **Festivales de Argentina** (festivalesdeargentina.com.ar), un directorio digital gratuito dedicado exclusivamente a difundir los festivales y eventos culturales de todo el país.
 
 **Por qué les escribimos**
 
@@ -40,17 +40,16 @@ Muchas gracias por su tiempo y esperamos poder construir esta colaboración junt
 
 Saludos cordiales,
 
-[NOMBRE]
+Claudio Duarte
 Festivales de Argentina
 festivalesdeargentina.com.ar
-[EMAIL DE CONTACTO]
-[TELÉFONO OPCIONAL]
+contacto@festivalesdeargentina.com.ar
 
 ---
 
 ## Notas de uso
 
-- Reemplazar `[PROVINCIA]`, `[NOMBRE]`, `[EMAIL DE CONTACTO]` y `[TELÉFONO OPCIONAL]` en cada envío.
+- Reemplazar `[PROVINCIA]` en cada envío.
 - Para provincias con muchos festivales conocidos (ej. Misiones, Salta, Córdoba), mencionar 1-2 festivales específicos que ya estén en el directorio para demostrar que el sitio ya los cubre.
 - Si no responden en 14 días, enviar un seguimiento corto recordando el email anterior.
 - Registrar el estado del contacto en el CSV `provincias-secretarias-turismo.csv`.
