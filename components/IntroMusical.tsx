@@ -88,7 +88,7 @@ export default function IntroMusical() {
         />
       </div>
 
-      <h1
+      <p
         style={{
           fontFamily: 'var(--font-bebas)',
           fontSize: 'clamp(2rem, 6vw, 3rem)',
@@ -100,7 +100,7 @@ export default function IntroMusical() {
       >
         <span style={{ color: '#F0F6FF' }}>Festivales de </span>
         <span style={{ color: '#74ACDF' }}>Argentina</span>
-      </h1>
+      </p>
 
       <button
         onClick={handleEnter}

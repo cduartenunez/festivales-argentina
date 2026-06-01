@@ -77,13 +77,13 @@ export default function GaleriaPage() {
         textAlign: 'center',
         borderBottom: '1px solid rgba(116,172,223,0.1)',
       }}>
-        <div style={{ display: 'inline-block', border: '1px solid rgba(116,172,223,0.35)', color: '#74ACDF', fontSize: '.72rem', fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', padding: '.3rem 1rem', borderRadius: '20px', marginBottom: '1.5rem' }}>
+        <h1 style={{ display: 'inline-block', border: '1px solid rgba(116,172,223,0.35)', color: '#74ACDF', fontSize: '.72rem', fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', padding: '.3rem 1rem', borderRadius: '20px', marginBottom: '1.5rem' }}>
           📸 Galería Comunitaria
-        </div>
-
-        <h1 style={{ fontFamily: 'var(--font-bebas)', fontSize: 'clamp(2.8rem, 7vw, 5.5rem)', letterSpacing: '.03em', lineHeight: .95, color: '#F0F6FF', marginBottom: '1.25rem' }}>
-          Tu Festival,<br /><span style={{ color: '#74ACDF' }}>Tu Foto</span>
         </h1>
+
+        <h2 style={{ fontFamily: 'var(--font-bebas)', fontSize: 'clamp(2.8rem, 7vw, 5.5rem)', letterSpacing: '.03em', lineHeight: .95, color: '#F0F6FF', marginBottom: '1.25rem' }}>
+          Tu Festival,<br /><span style={{ color: '#74ACDF' }}>Tu Foto</span>
+        </h2>
 
         <p style={{ fontSize: '1.05rem', color: 'rgba(116,172,223,0.7)', maxWidth: 520, margin: '0 auto', lineHeight: 1.65 }}>
           Compartí tus momentos en los festivales argentinos y formá parte de la memoria colectiva de nuestra cultura.
