@@ -12,7 +12,7 @@ export interface Festival {
   gratuito?: boolean;
 }
 
-export type Categoria = 'folklore' | 'gastro' | 'musica' | 'carnaval' | 'doma' | 'artesania' | 'tango' | 'cine' | '';
+export type Categoria = 'folklore' | 'gastro' | 'musica' | 'carnaval' | 'doma' | 'artesania' | 'tango' | 'cine' | 'cultura' | '';
 
 export const MESES = [
   'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
