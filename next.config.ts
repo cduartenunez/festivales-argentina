@@ -5,16 +5,6 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(__dirname),
   },
-  async headers() {
-    return [
-      {
-        source: '/',
-        headers: [
-          { key: 'Cache-Control', value: 'no-store, must-revalidate' },
-        ],
-      },
-    ];
-  },
   images: {
     remotePatterns: [
       {

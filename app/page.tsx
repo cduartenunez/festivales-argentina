@@ -1,5 +1,4 @@
 export const dynamic = 'force-dynamic';
-export const revalidate = 0;
 
 import { getFestivales } from '@/lib/festivales';
 import { MESES } from '@/lib/types';
