@@ -40,6 +40,7 @@ const CAT_LABEL: Record<string, string> = {
   carnaval:  '🎭 Carnaval',
   doma:      '🐎 Doma',
   artesania: '🌍 Cultura',
+  cultura:   '🌍 Cultura',
   tango:     '💃 Tango',
   cine:      '🎬 Cine',
 };

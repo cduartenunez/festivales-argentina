@@ -436,6 +436,7 @@ body {
 .cat-artesania { background: rgba(80,180,130,0.2);  color: #5fcc9a;        border: 1px solid rgba(80,180,130,0.3); }
 .cat-tango     { background: rgba(255,60,60,0.2);   color: #ff6b6b;        border: 1px solid rgba(255,60,60,0.3); }
 .cat-cine      { background: rgba(116,172,223,0.15); color: #a0c8ef;       border: 1px solid rgba(116,172,223,0.2); }
+.cat-cultura   { background: rgba(80,180,130,0.2);  color: #5fcc9a;        border: 1px solid rgba(80,180,130,0.3); }
 
 .card-date-pill {
   position: absolute;
