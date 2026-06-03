@@ -63,13 +63,12 @@ export default function FestivalCard({ festival: f }: { festival: Festival }) {
   const jsonLd = JSON.stringify(buildEventSchema(f)).replace(/<\/script/gi, '<\\/script');
 
   return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
-      <div
+    <div
       className={`flip-card${flipped ? ' flipped' : ''}`}
       onClick={() => !flipped && setFlipped(true)}
       style={{ cursor: flipped ? 'default' : 'pointer' }}
     >
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
       <div className="flip-card-inner">
 
         {/* ── FRENTE ─────────────────────────────── */}
@@ -200,6 +199,5 @@ export default function FestivalCard({ festival: f }: { festival: Festival }) {
 
       </div>
     </div>
-    </>
   );
 }
