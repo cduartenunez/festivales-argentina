@@ -1,30 +1,6 @@
 {
   "version": 4,
   "routes": {
-    "/": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "next-action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/",
-      "dataRoute": "/index.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/_global-error": {
       "experimentalBypassFor": [
         {
@@ -262,6 +238,30 @@
       "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/bafici-2027.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/festivales/buenos-aires-nu-metal-fest": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/festivales/[slug]",
+      "dataRoute": "/festivales/buenos-aires-nu-metal-fest.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -511,6 +511,30 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/festivales/fest-ska-fest": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/festivales/[slug]",
+      "dataRoute": "/festivales/fest-ska-fest.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/festivales/festival-de-cerveza-artesanal-de-bariloche": {
       "experimentalBypassFor": [
         {
@@ -622,6 +646,30 @@
       "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/festival-internacional-de-musica-clasica-de-ushuaia.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/festivales/festival-manta": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/festivales/[slug]",
+      "dataRoute": "/festivales/festival-manta.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -1678,6 +1726,30 @@
       "initialRevalidateSeconds": false,
       "srcRoute": "/festivales/[slug]",
       "dataRoute": "/festivales/noche-mas-larga-del-ano.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/festivales/noche-nortena": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/festivales/[slug]",
+      "dataRoute": "/festivales/noche-nortena.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",

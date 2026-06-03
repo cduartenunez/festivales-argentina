@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getFestivales } from '@/lib/festivales';
 import { MESES } from '@/lib/types';
 import Hero from '@/components/Hero';
