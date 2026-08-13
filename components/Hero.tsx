@@ -1,9 +1,17 @@
 'use client';
 
+import Link from 'next/link';
 import { useLang } from '@/context/LangContext';
 import { t } from '@/lib/i18n';
+import { toSlug } from '@/lib/festivales';
+import type { Festival } from '@/lib/types';
 
-export default function Hero({ total }: { total: number }) {
+interface Props {
+  total: number;
+  festDestacado?: Festival | null;
+}
+
+export default function Hero({ total, festDestacado }: Props) {
   const { lang } = useLang();
   const tx = t(lang);
 
@@ -44,6 +52,20 @@ export default function Hero({ total }: { total: number }) {
           ))}
         </div>
       </div>
+
+      {festDestacado && (
+        <Link
+          href={`/festivales/${toSlug(festDestacado.titulo)}`}
+          className="hero-featured"
+          aria-label={`Ver ${festDestacado.titulo}`}
+        >
+          <span className="hero-featured-label">
+            ★ {lang === 'es' ? 'Festival del mes' : 'Festival of the month'}
+          </span>
+          <span className="hero-featured-name">{festDestacado.titulo}</span>
+          <span className="hero-featured-loc">📍 {festDestacado.ubicacion}</span>
+        </Link>
+      )}
     </div>
   );
 }
