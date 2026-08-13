@@ -4,11 +4,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useLang } from '@/context/LangContext';
+import { useSearch } from '@/context/SearchContext';
 import { t } from '@/lib/i18n';
 
 export default function Header() {
   const path = usePathname();
   const { lang, toggle } = useLang();
+  const { query, setQuery } = useSearch();
   const tx = t(lang);
 
   return (
@@ -27,6 +29,15 @@ export default function Header() {
           <span style={{ color: '#74ACDF' }}>Argentina</span>
         </span>
       </Link>
+
+      <input
+        type="search"
+        className="navbar-search"
+        placeholder={tx.search.placeholder}
+        value={query}
+        onChange={e => setQuery(e.target.value)}
+        aria-label="Buscar festival"
+      />
 
       <nav style={{ display: 'flex', gap: '.35rem', alignItems: 'center' }}>
         <Link href="/"           className={`nav-link${path === '/'           ? ' active' : ''}`}>

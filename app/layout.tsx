@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { DM_Sans, Fraunces, Bebas_Neue } from 'next/font/google';
 import './globals.css';
 import { LangProvider } from '@/context/LangContext';
+import { SearchProvider } from '@/context/SearchContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IntroMusical from '@/components/IntroMusical';
@@ -42,12 +43,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className={`${dmSans.variable} ${fraunces.variable} ${bebasNeue.variable}`}>
       <body>
-        <LangProvider>
-          <IntroMusical />
-          <Header />
-          {children}
-          <Footer />
-        </LangProvider>
+        <SearchProvider>
+          <LangProvider>
+            <IntroMusical />
+            <Header />
+            {children}
+            <Footer />
+          </LangProvider>
+        </SearchProvider>
       </body>
     </html>
   );

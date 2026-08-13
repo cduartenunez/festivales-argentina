@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import Image from 'next/image';
 import { Festival, MESES, MES_EMOJI, MES_VIBE } from '@/lib/types';
 import { useLang } from '@/context/LangContext';
+import { useSearch } from '@/context/SearchContext';
 import { t } from '@/lib/i18n';
 import FestivalCard from './FestivalCard';
 
@@ -15,11 +16,11 @@ interface Props {
 }
 
 export default function FestivalGrid({ festivales, mesActual }: Props) {
-  const [query,     setQuery]     = useState('');
   const [cat,       setCat]       = useState('');
   const [mesFiltro, setMesFiltro] = useState<string | null>(null);
 
   const { lang } = useLang();
+  const { query, setQuery } = useSearch();
   const tx = t(lang);
 
   const currentIdx   = MESES.indexOf(mesActual);
@@ -78,8 +79,10 @@ export default function FestivalGrid({ festivales, mesActual }: Props) {
 
       {/* ── FILTER BAR ────────────────────────────── */}
       <div className="filter-bar">
+        {/* Solo visible en mobile — en desktop la búsqueda está en el header */}
         <input
-          type="text"
+          type="search"
+          className="filter-bar-search"
           placeholder={tx.search.placeholder}
           value={query}
           onChange={e => setQuery(e.target.value)}
