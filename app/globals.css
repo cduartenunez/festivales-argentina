@@ -17,7 +17,7 @@
   /* CTAs — #FF6835 sobre #030810 = 7.0:1 (WCAG AAA) */
   --naranja:      #FF6835;
   --naranja2:     #E8521A;
-  --naranja-glow: rgba(255,104,53,0.18);
+  --naranja-glow: rgba(255,104,53,0.3);
 }
 
 @theme inline {
@@ -721,7 +721,7 @@ body {
 
 .flip-btn-primary {
   background: var(--naranja);
-  color: #fff;
+  color: #0F0F0F;
 }
 
 .flip-btn-primary:hover { background: var(--naranja2); }
@@ -875,7 +875,7 @@ body {
 .nl-btn {
   width: 100%;
   background: var(--naranja);
-  color: #fff;
+  color: #0F0F0F;
   border: none;
   border-radius: 8px;
   padding: .65rem 1rem;
@@ -967,9 +967,9 @@ body {
   white-space: nowrap;
 }
 
-.card-urgency-naranja { background: rgba(255,104,53,0.88); color: #fff; }
-.card-urgency-dorado  { background: rgba(232,184,48,0.9);  color: #1a1000; }
-.card-urgency-celeste { background: rgba(116,172,223,0.88); color: #030810; }
+.card-urgency-naranja { background: rgba(255,104,53,0.88);  color: #0F0F0F; }
+.card-urgency-dorado  { background: rgba(232,184,48,0.9);   color: #0F0F0F; }
+.card-urgency-celeste { background: rgba(116,172,223,0.88); color: #0F0F0F; }
 
 /* ── CARD PRICE BADGE ─────────────────────────────── */
 .card-price-pill {
@@ -985,8 +985,9 @@ body {
   white-space: nowrap;
 }
 
-.card-price-gratis { background: rgba(80,180,130,0.85); color: #fff; }
-.card-price-pago   { background: rgba(240,246,255,0.1); color: rgba(240,246,255,0.65); border: 1px solid rgba(240,246,255,0.18); }
+.card-price-gratis { background: rgba(34,197,94,0.88);   color: #0F0F0F; }
+.card-price-dorado { background: rgba(232,184,48,0.88);  color: #0F0F0F; }
+.card-price-pago   { background: rgba(240,246,255,0.08); color: rgba(240,246,255,0.6); border: 1px solid rgba(240,246,255,0.15); }
 
 /* ── NAVBAR SEARCH ────────────────────────────────── */
 .navbar-search {
