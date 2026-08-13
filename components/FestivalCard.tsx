@@ -43,6 +43,33 @@ const CAT_LABEL: Record<string, string> = {
   cultura:   '🌍 Cultura',
   tango:     '💃 Tango',
   cine:      '🎬 Cine',
+  vino:      '🍷 Vino',
+};
+
+// [CTA primaria, CTA secundaria] por categoría
+const CAT_CTAS: Record<string, [string, string]> = {
+  gastro:    ['Reservar mesa',        'Cómo llegar'],
+  musica:    ['Comprar entradas',     'Reservar hotel'],
+  folklore:  ['Comprar entradas',     'Reservar hotel'],
+  cultura:   ['Programa completo',    'Alojamiento'],
+  artesania: ['Programa completo',    'Alojamiento'],
+  vino:      ['Reservar degustación', 'Tour enológico'],
+  carnaval:  ['Comprar entradas',     'Corsos cercanos'],
+  doma:      ['Comprar entradas',     'Reservar hotel'],
+  tango:     ['Comprar entradas',     'Reservar hotel'],
+  cine:      ['Programa completo',    'Alojamiento'],
+};
+
+const CTA_ICON: Record<string, string> = {
+  'Reservar mesa':        '🍽️',
+  'Cómo llegar':          '📍',
+  'Comprar entradas':     '🎟️',
+  'Reservar hotel':       '🏨',
+  'Programa completo':    '📋',
+  'Alojamiento':          '🏨',
+  'Reservar degustación': '🍷',
+  'Tour enológico':       '🍇',
+  'Corsos cercanos':      '🎭',
 };
 
 const MESES_CORTO = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
@@ -63,7 +90,7 @@ function getUrgencia(fechaInicio: string, fechaFin: string): { texto: string; cl
   const inicio = new Date(fechaInicio + 'T12:00:00');
   const fin    = fechaFin ? new Date(fechaFin + 'T23:59:59') : inicio;
 
-  if (fin < hoy) return null; // ya pasó
+  if (fin < hoy) return null;
 
   const diasHasta = Math.ceil((inicio.getTime() - hoy.getTime()) / 86_400_000);
 
@@ -71,7 +98,6 @@ function getUrgencia(fechaInicio: string, fechaFin: string): { texto: string; cl
   if (diasHasta === 0) return { texto: '🔥 Hoy empieza', clase: 'card-urgency-naranja' };
   if (diasHasta <= 7)  return { texto: '🔥 Esta semana', clase: 'card-urgency-naranja' };
   if (diasHasta <= 21) return { texto: `⏳ En ${diasHasta} días`, clase: 'card-urgency-dorado' };
-  // >21 días: mostrar fecha de inicio
   const fechaStr = `${inicio.getDate()} ${MESES_CORTO[inicio.getMonth()]}`;
   return { texto: `📅 ${fechaStr}`, clase: 'card-urgency-celeste' };
 }
@@ -81,7 +107,6 @@ export default function FestivalCard({ festival: f }: { festival: Festival }) {
 
   const jsonLd = JSON.stringify(buildEventSchema(f)).replace(/<\/script/gi, '<\\/script');
 
-  // Tickets sobreescribe la urgencia por fecha cuando está definido
   const ticketsBadge =
     f.ticketsAvailable === true  ? { texto: '🎟️ Entradas YA',  clase: 'card-urgency-naranja' } :
     f.ticketsAvailable === false ? { texto: '📅 Próximamente', clase: 'card-urgency-celeste' } :
@@ -89,10 +114,13 @@ export default function FestivalCard({ festival: f }: { festival: Festival }) {
   const urgenciaBadge = ticketsBadge ?? (f.fecha_inicio ? getUrgencia(f.fecha_inicio, f.fecha_fin) : null);
 
   const precioPill = f.gratuito === true
-    ? { texto: '🆓 Gratis',    clase: 'card-price-gratis' }
+    ? { texto: '🆓 Gratis',     clase: 'card-price-gratis' }
     : f.price
     ? { texto: `💰 ${f.price}`, clase: 'card-price-dorado' }
     : { texto: '💰 Con entrada', clase: 'card-price-pago' };
+
+  const mapsUrl = `https://maps.google.com/?q=${encodeURIComponent(f.ubicacion + ' Argentina')}`;
+  const [ctaPrimary, ctaSecondary] = CAT_CTAS[f.categoria] ?? ['Más info', 'Cómo llegar'];
 
   return (
     <div
@@ -152,7 +180,6 @@ export default function FestivalCard({ festival: f }: { festival: Festival }) {
 
         {/* ── REVERSO ────────────────────────────── */}
         <div className="flip-card-back">
-          {/* Header con imagen de fondo difuminada */}
           {f.imagen && (
             <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', borderRadius: '12px' }}>
               <Image
@@ -167,12 +194,10 @@ export default function FestivalCard({ festival: f }: { festival: Festival }) {
           )}
 
           <div className="flip-back-body">
-            {/* Categoría */}
             <span className={`card-cat-pill cat-${f.categoria}`} style={{ position: 'static', marginBottom: '.75rem', alignSelf: 'flex-start' }}>
               {CAT_LABEL[f.categoria] || f.categoria}
             </span>
 
-            {/* Título */}
             <h3 style={{
               fontFamily: 'var(--font-bebas)',
               fontSize: '1.7rem',
@@ -184,47 +209,50 @@ export default function FestivalCard({ festival: f }: { festival: Festival }) {
               {f.titulo}
             </h3>
 
-            {/* Fechas */}
             {f.fecha_inicio && (
-              <p style={{ fontSize: '.8rem', color: 'var(--dorado)', fontWeight: 700, marginBottom: '.5rem' }}>
+              <p style={{ fontSize: '.8rem', color: 'var(--dorado)', fontWeight: 700, marginBottom: '.35rem' }}>
                 🗓 {formatRango(f.fecha_inicio, f.fecha_fin)} · {f.mes}
               </p>
             )}
 
-            {/* Descripción completa */}
+            {/* Precio en reverso */}
+            {(f.gratuito !== undefined || f.price) && (
+              <p style={{ fontSize: '.75rem', fontWeight: 700, marginBottom: '.5rem',
+                color: f.gratuito ? '#22C55E' : 'var(--dorado)' }}>
+                {f.gratuito ? '🆓 Entrada gratuita' : `💰 ${f.price ?? 'Con entrada'}`}
+              </p>
+            )}
+
             <p style={{ fontSize: '.85rem', color: 'rgba(240,246,255,0.8)', lineHeight: 1.6, flex: 1, marginBottom: '.75rem' }}>
               {f.descripcion}
             </p>
 
-            {/* Tags */}
             <div className="card-tags" style={{ marginBottom: '.75rem' }}>
               <span className="tag">{f.mes}</span>
             </div>
 
-            {/* Botones */}
+            {/* CTAs: custom > por categoría > fallback */}
             <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap', marginTop: 'auto' }}>
-              <a
-                href={`https://maps.google.com/?q=${encodeURIComponent(f.ubicacion + ' Argentina')}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={e => e.stopPropagation()}
-                className="flip-btn flip-btn-ghost"
-              >
-                📍 {f.ubicacion}
-              </a>
-
-              {f.link && (
-                <a
-                  href={f.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={e => e.stopPropagation()}
-                  className="flip-btn flip-btn-primary"
-                >
-                  Más info →
-                </a>
-              )}
-
+              {f.ctas
+                ? f.ctas.map(cta => (
+                    <a key={cta.label} href={cta.url} target="_blank" rel="noopener noreferrer"
+                       onClick={e => e.stopPropagation()} className="flip-btn flip-btn-primary">
+                      {CTA_ICON[cta.label] ?? '→'} {cta.label}
+                    </a>
+                  ))
+                : <>
+                    {f.link && (
+                      <a href={f.link} target="_blank" rel="noopener noreferrer"
+                         onClick={e => e.stopPropagation()} className="flip-btn flip-btn-primary">
+                        {CTA_ICON[ctaPrimary] ?? '→'} {ctaPrimary}
+                      </a>
+                    )}
+                    <a href={mapsUrl} target="_blank" rel="noopener noreferrer"
+                       onClick={e => e.stopPropagation()} className="flip-btn flip-btn-ghost">
+                      {CTA_ICON[ctaSecondary] ?? '📍'} {ctaSecondary}
+                    </a>
+                  </>
+              }
               <button
                 onClick={e => { e.stopPropagation(); setFlipped(false); }}
                 className="flip-btn flip-btn-ghost"
