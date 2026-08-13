@@ -10,9 +10,12 @@ export interface Festival {
   imagen: string;
   link?: string;
   gratuito?: boolean;
+  price?: string;               // ej. "$500 – $2.000"; undefined = sin info de precio
+  ticketsAvailable?: boolean;   // true = entradas YA; false = próximamente
+  ctas?: Array<{ label: string; url: string }>;  // sobreescribe CTAs por defecto
 }
 
-export type Categoria = 'folklore' | 'gastro' | 'musica' | 'carnaval' | 'doma' | 'artesania' | 'tango' | 'cine' | 'cultura' | '';
+export type Categoria = 'folklore' | 'gastro' | 'musica' | 'carnaval' | 'doma' | 'artesania' | 'tango' | 'cine' | 'cultura' | 'vino' | '';
 
 export const MESES = [
   'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',

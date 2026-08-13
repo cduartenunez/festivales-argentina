@@ -67,21 +67,31 @@ function getUrgencia(fechaInicio: string, fechaFin: string): { texto: string; cl
 
   const diasHasta = Math.ceil((inicio.getTime() - hoy.getTime()) / 86_400_000);
 
-  if (diasHasta < 0) return { texto: '🔥 En curso', clase: 'card-urgency-naranja' };
+  if (diasHasta < 0) return { texto: '🔥 En curso',    clase: 'card-urgency-naranja' };
   if (diasHasta === 0) return { texto: '🔥 Hoy empieza', clase: 'card-urgency-naranja' };
-  if (diasHasta <= 7)  return { texto: `🔥 En ${diasHasta} días`, clase: 'card-urgency-naranja' };
+  if (diasHasta <= 7)  return { texto: '🔥 Esta semana', clase: 'card-urgency-naranja' };
   if (diasHasta <= 21) return { texto: `⏳ En ${diasHasta} días`, clase: 'card-urgency-dorado' };
-  if (diasHasta <= 60) return { texto: `📅 En ${diasHasta} días`, clase: 'card-urgency-celeste' };
-  return null;
+  // >21 días: mostrar fecha de inicio
+  const fechaStr = `${inicio.getDate()} ${MESES_CORTO[inicio.getMonth()]}`;
+  return { texto: `📅 ${fechaStr}`, clase: 'card-urgency-celeste' };
 }
 
 export default function FestivalCard({ festival: f }: { festival: Festival }) {
   const [flipped, setFlipped] = useState(false);
 
   const jsonLd = JSON.stringify(buildEventSchema(f)).replace(/<\/script/gi, '<\\/script');
-  const urgencia = f.fecha_inicio ? getUrgencia(f.fecha_inicio, f.fecha_fin) : null;
+
+  // Tickets sobreescribe la urgencia por fecha cuando está definido
+  const ticketsBadge =
+    f.ticketsAvailable === true  ? { texto: '🎟️ Entradas YA',  clase: 'card-urgency-naranja' } :
+    f.ticketsAvailable === false ? { texto: '📅 Próximamente', clase: 'card-urgency-celeste' } :
+    null;
+  const urgenciaBadge = ticketsBadge ?? (f.fecha_inicio ? getUrgencia(f.fecha_inicio, f.fecha_fin) : null);
+
   const precioPill = f.gratuito === true
-    ? { texto: '🆓 Gratis', clase: 'card-price-gratis' }
+    ? { texto: '🆓 Gratis',    clase: 'card-price-gratis' }
+    : f.price
+    ? { texto: `💰 ${f.price}`, clase: 'card-price-dorado' }
     : { texto: '💰 Con entrada', clase: 'card-price-pago' };
 
   return (
@@ -117,9 +127,9 @@ export default function FestivalCard({ festival: f }: { festival: Festival }) {
                 {formatRango(f.fecha_inicio, f.fecha_fin)}
               </span>
             )}
-            {urgencia && (
-              <span className={`card-urgency-pill ${urgencia.clase}`}>
-                {urgencia.texto}
+            {urgenciaBadge && (
+              <span className={`card-urgency-pill ${urgenciaBadge.clase}`}>
+                {urgenciaBadge.texto}
               </span>
             )}
             <span className={`card-price-pill ${precioPill.clase}`}>
