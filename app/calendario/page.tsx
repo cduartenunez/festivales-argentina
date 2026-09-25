@@ -2,6 +2,9 @@ import { getFestivales, agruparPorMes, formatFecha } from '@/lib/festivales';
 import { MES_EMOJI, MES_VIBE } from '@/lib/types';
 import type { Metadata } from 'next';
 
+// Regenera cada hora para que los eventos vencidos desaparezcan sin redeploy.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: 'Calendario 2027 | Festivales de Argentina',
   description: 'Todos los festivales ordenados mes a mes. Planificá tu agenda cultural 2027.',

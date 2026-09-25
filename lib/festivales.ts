@@ -1,8 +1,13 @@
 import { Festival } from './types';
 import { FESTIVALES_ESTATICOS } from './data';
 
+// Oculta los eventos que ya terminaron (fecha en hora de Argentina). Los que no tienen fecha se muestran siempre.
 export async function getFestivales(): Promise<Festival[]> {
-  return FESTIVALES_ESTATICOS;
+  const hoy = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Argentina/Buenos_Aires' });
+  return FESTIVALES_ESTATICOS.filter(f => {
+    const fin = f.fecha_fin || f.fecha_inicio;
+    return !fin || fin >= hoy;
+  });
 }
 
 export function agruparPorMes(festivales: Festival[]): Record<string, Festival[]> {
