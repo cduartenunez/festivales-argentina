@@ -14,7 +14,7 @@
 /coverage
 
 # next.js
-/.next/
+# /.next/ — committed for Hostinger deployment (no build step on server)
 /out/
 
 # production
