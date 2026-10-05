@@ -8,8 +8,8 @@ import { baseOpenGraph } from '../shared-metadata';
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: 'Calendario 2027 | Festivales de Argentina',
-  description: 'Todos los festivales ordenados mes a mes. Planificá tu agenda cultural 2027.',
+  title: 'Próximos festivales | Calendario de Festivales de Argentina',
+  description: 'Consultá el calendario de próximos festivales y eventos culturales de Argentina, con fechas, lugares y detalles actualizados.',
   alternates: { canonical: '/calendario' },
   openGraph: { ...baseOpenGraph, url: '/calendario' },
 };
@@ -68,7 +68,7 @@ export default async function CalendarioPage() {
           lineHeight: 1,
           marginBottom: '.75rem',
         }}>
-          Calendario <span style={{ color: 'var(--dorado)' }}>2027</span>
+          Próximos festivales <span style={{ color: 'var(--dorado)' }}>de Argentina</span>
         </h1>
 
         <p style={{ color: 'var(--gris)', fontSize: '1rem', maxWidth: 480, margin: '0 auto' }}>
