@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Festival } from '@/lib/types';
+import { toSlug } from '@/lib/festivales';
 
 function buildEventSchema(f: Festival) {
   const schema: Record<string, unknown> = {
@@ -119,6 +121,7 @@ export default function FestivalCard({ festival: f }: { festival: Festival }) {
     ? { texto: `💰 ${f.price}`, clase: 'card-price-dorado' }
     : { texto: '💰 Con entrada', clase: 'card-price-pago' };
 
+  const fichaUrl = `/festivales/${toSlug(f.titulo)}`;
   const mapsUrl = `https://maps.google.com/?q=${encodeURIComponent(f.ubicacion + ' Argentina')}`;
   const [ctaPrimary, ctaSecondary] = CAT_CTAS[f.categoria] ?? ['Más info', 'Cómo llegar'];
 
@@ -166,7 +169,9 @@ export default function FestivalCard({ festival: f }: { festival: Festival }) {
           </div>
 
           <div className="card-body">
-            <h3 className="card-title">{f.titulo}</h3>
+            <h3 className="card-title">
+              <Link href={fichaUrl} onClick={e => e.stopPropagation()}>{f.titulo}</Link>
+            </h3>
             <p className="card-loc">📍 {f.ubicacion}</p>
             <p className="card-desc">{f.descripcion}</p>
             <div className="card-tags">
@@ -206,7 +211,7 @@ export default function FestivalCard({ festival: f }: { festival: Festival }) {
               lineHeight: 1.1,
               marginBottom: '.5rem',
             }}>
-              {f.titulo}
+              <Link href={fichaUrl} onClick={e => e.stopPropagation()}>{f.titulo}</Link>
             </h3>
 
             {f.fecha_inicio && (

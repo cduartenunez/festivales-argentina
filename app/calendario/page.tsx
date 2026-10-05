@@ -1,4 +1,5 @@
-import { getFestivales, agruparPorMes, formatFecha } from '@/lib/festivales';
+import Link from 'next/link';
+import { getFestivales, agruparPorMes, formatFecha, toSlug } from '@/lib/festivales';
 import { MES_EMOJI, MES_VIBE } from '@/lib/types';
 import type { Metadata } from 'next';
 
@@ -173,7 +174,7 @@ export default async function CalendarioPage() {
                   {/* Info */}
                   <div className="calendar-info">
                     <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', flexWrap: 'wrap', marginBottom: '.2rem' }}>
-                      <h3 className="calendar-title">{f.titulo}</h3>
+                      <h3 className="calendar-title"><Link href={`/festivales/${toSlug(f.titulo)}`}>{f.titulo}</Link></h3>
                       <span style={{
                         fontSize: '.62rem',
                         fontWeight: 700,
