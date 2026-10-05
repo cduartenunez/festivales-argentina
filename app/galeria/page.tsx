@@ -1,10 +1,13 @@
 import type { Metadata } from 'next';
+import { baseOpenGraph } from '../shared-metadata';
 import GaleriaForm from '@/components/GaleriaForm';
 import { FESTIVALES_ESTATICOS } from '@/lib/data';
 
 export const metadata: Metadata = {
   title: 'Galería Comunitaria | Festivales de Argentina',
   description: 'Fotos de la comunidad en festivales de todo el país. Compartí tu momento.',
+  alternates: { canonical: '/galeria' },
+  openGraph: { ...baseOpenGraph, url: '/galeria' },
 };
 
 const FOTOS = [

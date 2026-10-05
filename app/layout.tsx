@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { DM_Sans, Fraunces, Bebas_Neue } from 'next/font/google';
 import './globals.css';
+import { baseOpenGraph } from './shared-metadata';
 import { LangProvider } from '@/context/LangContext';
 import { SearchProvider } from '@/context/SearchContext';
 import Header from '@/components/Header';
@@ -27,15 +28,12 @@ const bebasNeue = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://festivalesdeargentina.com.ar'),
   title: 'Festivales de Argentina 2027 | Directorio Oficial',
   description: 'El directorio más completo de festivales, fiestas populares y eventos culturales de todo el país.',
   openGraph: {
-    title: 'Festivales de Argentina 2027',
-    description: 'El directorio más completo de festivales y eventos culturales argentinos.',
+    ...baseOpenGraph,
     url: 'https://festivalesdeargentina.com.ar',
-    siteName: 'Festivales de Argentina',
-    locale: 'es_AR',
-    type: 'website',
   },
 };
 

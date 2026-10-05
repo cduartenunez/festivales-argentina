@@ -1,9 +1,14 @@
 export const dynamic = 'force-dynamic';
 
+import type { Metadata } from 'next';
 import { getFestivales } from '@/lib/festivales';
 import { MESES } from '@/lib/types';
 import Hero from '@/components/Hero';
 import FestivalGrid from '@/components/FestivalGrid';
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+};
 
 export default async function Home() {
   const festivales = await getFestivales();

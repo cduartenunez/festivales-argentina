@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { getFestivales, agruparPorMes, formatFecha, toSlug } from '@/lib/festivales';
 import { MES_EMOJI, MES_VIBE } from '@/lib/types';
 import type { Metadata } from 'next';
+import { baseOpenGraph } from '../shared-metadata';
 
 // Regenera cada hora para que los eventos vencidos desaparezcan sin redeploy.
 export const revalidate = 3600;
@@ -9,6 +10,8 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: 'Calendario 2027 | Festivales de Argentina',
   description: 'Todos los festivales ordenados mes a mes. Planificá tu agenda cultural 2027.',
+  alternates: { canonical: '/calendario' },
+  openGraph: { ...baseOpenGraph, url: '/calendario' },
 };
 
 const CAT_COLOR: Record<string, string> = {

@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
+import { baseOpenGraph } from '../shared-metadata';
 import SponsorsForm from '@/components/SponsorsForm';
 
 export const metadata: Metadata = {
   title: 'Anunciá en Festivales de Argentina | Publicidad',
   description: 'Llegá a miles de turistas y amantes de la cultura argentina. Planes desde USD 15/mes.',
+  alternates: { canonical: '/sponsors' },
+  openGraph: { ...baseOpenGraph, url: '/sponsors' },
 };
 
 const TIERS = [
