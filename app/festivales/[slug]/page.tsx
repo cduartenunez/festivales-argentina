@@ -91,12 +91,13 @@ function buildEventSchema(f: Festival, slug: string) {
   };
   if (f.fecha_inicio) schema.startDate = f.fecha_inicio;
   schema.endDate = f.fecha_fin || f.fecha_inicio || undefined;
-  if (f.imagen) schema.image = f.imagen;
-  if (f.link) schema.mainEntityOfPage = f.link;
+  // Imágenes locales ('/tradicion.jpg') a URL absoluta; las de Unsplash quedan igual.
+  if (f.imagen) schema.image = new URL(f.imagen, SITE).toString();
+  // Sitio oficial del evento: referencia externa, no la página principal de esta ficha.
+  if (f.link) schema.sameAs = f.link;
   if (f.gratuito !== undefined) schema.isAccessibleForFree = f.gratuito;
-  schema.organizer = { '@type': 'Organization', name: 'Festivales de Argentina', url: 'https://festivalesdeargentina.com.ar' };
-  schema.offers = { '@type': 'Offer', availability: 'https://schema.org/InStock', price: '0', priceCurrency: 'ARS' };
-  schema.performer = { '@type': 'PerformingGroup', name: 'Artistas del festival' };
+  // Solo datos reales: precio 0 únicamente si el evento es gratuito. Sin organizador ni artistas inventados.
+  if (f.gratuito) schema.offers = { '@type': 'Offer', price: '0', priceCurrency: 'ARS' };
   return schema;
 }
 
