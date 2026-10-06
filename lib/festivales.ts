@@ -1,13 +1,21 @@
 import { Festival } from './types';
 import { FESTIVALES_ESTATICOS } from './data';
 
+// Fecha de hoy en Argentina como 'YYYY-MM-DD': se compara como texto, sin depender de la zona del servidor ni del navegador.
+export function hoyAR(): string {
+  return new Date().toLocaleDateString('en-CA', { timeZone: 'America/Argentina/Buenos_Aires' });
+}
+
+// Terminó si su último día ya pasó; el día de fin todavía cuenta como vigente. Sin fecha, nunca termina.
+export function isFinalizado(f: Festival, hoy = hoyAR()): boolean {
+  const fin = f.fecha_fin || f.fecha_inicio;
+  return !!fin && fin < hoy;
+}
+
 // Oculta los eventos que ya terminaron (fecha en hora de Argentina). Los que no tienen fecha se muestran siempre.
 export async function getFestivales(): Promise<Festival[]> {
-  const hoy = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Argentina/Buenos_Aires' });
-  return FESTIVALES_ESTATICOS.filter(f => {
-    const fin = f.fecha_fin || f.fecha_inicio;
-    return !fin || fin >= hoy;
-  });
+  const hoy = hoyAR();
+  return FESTIVALES_ESTATICOS.filter(f => !isFinalizado(f, hoy));
 }
 
 export function agruparPorMes(festivales: Festival[]): Record<string, Festival[]> {

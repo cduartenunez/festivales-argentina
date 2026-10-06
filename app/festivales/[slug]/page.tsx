@@ -1,10 +1,13 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import { getFestivales, getFestivalBySlug, toSlug } from '@/lib/festivales';
+import { getFestivales, getFestivalBySlug, toSlug, isFinalizado } from '@/lib/festivales';
 import { Festival } from '@/lib/types';
 
 const SITE = 'https://festivalesdeargentina.com.ar';
+
+// Se regenera cada hora para que la ficha pase a "FINALIZADO" sola cuando termina el festival.
+export const revalidate = 3600;
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -108,6 +111,7 @@ export default async function FestivalPage({ params }: Props) {
 
   const jsonLd = JSON.stringify(buildEventSchema(f, slug)).replace(/<\/script/gi, '<\\/script');
   const rangoFecha = formatRangoLargo(f.fecha_inicio, f.fecha_fin);
+  const finalizado = isFinalizado(f);
 
   return (
     <>
@@ -120,7 +124,7 @@ export default async function FestivalPage({ params }: Props) {
             src={f.imagen}
             alt={f.titulo}
             fill
-            style={{ objectFit: 'cover', filter: 'brightness(0.5) saturate(0.85)' }}
+            style={{ objectFit: 'cover', filter: `brightness(0.5) saturate(0.85)${finalizado ? ' grayscale(1)' : ''}` }}
             priority
             unoptimized
           />
@@ -180,6 +184,20 @@ export default async function FestivalPage({ params }: Props) {
           paddingBottom: '1.5rem',
           borderBottom: '1px solid var(--borde)',
         }}>
+          {finalizado && (
+            <span style={{
+              fontSize: '.78rem',
+              fontWeight: 700,
+              letterSpacing: '.08em',
+              padding: '.2rem .7rem',
+              borderRadius: 5,
+              background: 'rgba(240,246,255,0.08)',
+              color: 'rgba(240,246,255,0.85)',
+              border: '1px solid rgba(240,246,255,0.25)',
+            }}>
+              FINALIZADO
+            </span>
+          )}
           {rangoFecha && (
             <span style={{ fontSize: '.9rem', color: 'var(--dorado)', fontWeight: 700 }}>
               🗓 {rangoFecha}
